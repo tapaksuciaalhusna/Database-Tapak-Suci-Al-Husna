@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:03:42.697Z",
+  "updated": "2026-11-09T17:05:01.812Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -210,6 +210,16 @@
       "status": "Alumni",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2018-0021"
+    },
+    {
+      "id": "amw9igtq1",
+      "nama": "Diah Al Hafizah, K.Da",
+      "jk": "P",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2015,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2015-0022"
     }
   ]
 }
