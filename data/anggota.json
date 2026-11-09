@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T16:46:59.619Z",
+  "updated": "2026-11-09T16:48:17.731Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -60,6 +60,16 @@
       "status": "Alumni",
       "catatan": "Pelatih Tapak Suci Cabang Pesantren Al Husna Tahun 2019- 2024",
       "noAnggota": "TS-ALH-2015-0006"
+    },
+    {
+      "id": "amw9hw6s7",
+      "nama": "Aril Wibowo Barus, K.Ma",
+      "jk": "L",
+      "jenjang": "Kader Muda",
+      "bergabung": 2018,
+      "status": "Aktif",
+      "catatan": "Kader/Pelatih Tapak Suci Cabang Pesantren Al Husna Tahun 2023-2025",
+      "noAnggota": "TS-ALH-2018-0007"
     }
   ]
 }
