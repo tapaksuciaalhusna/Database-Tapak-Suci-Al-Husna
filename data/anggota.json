@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:17:12.932Z",
+  "updated": "2026-11-09T17:19:31.676Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -350,6 +350,16 @@
       "status": "Alumni",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2017-0035"
+    },
+    {
+      "id": "amw9ixw9t",
+      "nama": "Ihsan Nur Hariansyah, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2017,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2017-0036"
     }
   ]
 }
