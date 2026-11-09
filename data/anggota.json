@@ -1,0 +1,25 @@
+{
+  "updated": "2026-11-09T16:37:40.356Z",
+  "anggota": [
+    {
+      "id": "amw9hglzi",
+      "nama": "Muhammad Aidil Husna, S.S, P.Ma",
+      "jk": "L",
+      "jenjang": "Pendekar Muda",
+      "bergabung": 1991,
+      "status": "Aktif",
+      "catatan": "Pembina Tapak Suci Cabang Pesantren Al Husna Sumatera Utara",
+      "noAnggota": "TS-ALH-1991-0001"
+    },
+    {
+      "id": "amw9hiebw",
+      "nama": "Ma'ruf Denhas Daulay, S.H, K.Ua",
+      "jk": "L",
+      "jenjang": "Kader Utara",
+      "bergabung": 2009,
+      "status": "Aktif",
+      "catatan": "Koordinator Tapak Suci Cabang Pesantren Al Husna 2015-2025",
+      "noAnggota": "TS-ALH-2009-0002"
+    }
+  ]
+}
