@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Database Anggota Tapak Suci – Pesantren Al Husna</title>
+<link rel="icon" href="logo.png">
+<style>
+:root{--bg:#f6f5ef;--card:#fff;--ink:#12233f;--mut:#5d6b82;--line:#d9dde6;--blue:#1747b8;--gold:#e8b800;--red:#c0392b;--s:#e8f1fb;--k:#dfe6fb;--p:#222;--pt:#f3d56a}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1526;--card:#16213a;--ink:#eef2fa;--mut:#9aa8c2;--line:#2a3856;--blue:#6f97ff;--s:#1c3350;--k:#232f5e;--p:#000;--pt:#f3d56a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{background:#1747b8;color:#fff;border-bottom:6px solid var(--gold);padding:18px 16px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;gap:16px;align-items:center}
+header img{width:72px;height:auto}
+h1{margin:0;font:700 1.5rem/1.2 Georgia,"Times New Roman",serif}
+header p{margin:2px 0 0;opacity:.9}
+main{padding:20px 0 60px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.stat{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--blue);padding:10px 14px;border-radius:6px}
+.stat b{display:block;font-size:1.8rem;line-height:1.1}
+.stat span{color:var(--mut);font-size:.9rem}
+.stat.s{border-left-color:#9bb7d4}.stat.k{border-left-color:var(--blue)}.stat.p{border-left-color:#111}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;align-items:center}
+input,select,button,textarea{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px 10px}
+input[type=search]{flex:1;min-width:200px}
+button{cursor:pointer}
+button.pri{background:var(--blue);color:#fff;border-color:var(--blue)}
+button.gold{background:var(--gold);color:#111;border-color:var(--gold);font-weight:600}
+button.del{color:var(--red)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:1px}
+.sp{flex:1}
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:6px}
+table{width:100%;border-collapse:collapse;min-width:640px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.85rem;color:var(--mut);font-weight:600;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+.badge{display:inline-block;padding:2px 9px;border-radius:99px;font-size:.85rem;white-space:nowrap}
+.b-Siswa{background:var(--s)}.b-Kader{background:var(--k);border:1px solid var(--blue)}.b-Pendekar{background:var(--p);color:var(--pt)}
+.mut{color:var(--mut);font-size:.88rem}
+.empty{padding:36px 16px;text-align:center;color:var(--mut)}
+.msg{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:6px;max-width:90vw;z-index:9}
+.dirty{background:#fff3cd;color:#5c4400;border:1px solid var(--gold);padding:8px 12px;border-radius:6px;margin-bottom:12px}
+dialog{border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);width:min(440px,94vw);padding:20px}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+dialog h2{margin:0 0 12px;font:700 1.2rem Georgia,serif}
+label{display:block;margin:10px 0 3px;font-size:.9rem;color:var(--mut)}
+dialog input,dialog select,dialog textarea{width:100%}
+.row{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+footer{color:var(--mut);font-size:.85rem;text-align:center;padding:0 16px 30px}
+button.lnk{border:0;background:none;padding:0;font-weight:700;color:var(--blue);text-align:left;text-decoration:underline}
+#dDetail{width:min(620px,94vw)}#dKta{width:min(420px,96vw)}
+dialog h3{margin:16px 0 4px;font-size:1rem}dialog ul{margin:4px 0;padding-left:18px}dialog li{margin:3px 0}
+dialog .bar button,dialog li button{padding:3px 8px}
+.kta{width:85.6mm;height:54mm;border:1px solid #1747b8;border-radius:3mm;overflow:hidden;background:#fff;color:#12233f;display:flex;flex-direction:column;font-size:8.5pt;break-inside:avoid;margin:0 auto}
+.kh{background:#1747b8;color:#fff;display:flex;gap:2mm;align-items:center;padding:1.5mm 3mm;border-bottom:1.2mm solid #e8b800}
+.kh img{height:11mm}.kh b{display:block;font-size:10.5pt}.kh span{display:block;font-size:6.3pt;line-height:1.2}
+.kb{padding:2mm 3mm;flex:1;line-height:1.3}.kn{font-weight:700;font-size:11pt}
+.kc{padding:0 3mm 2mm;text-align:center}.kc svg{width:100%;height:9mm;display:block}.kno{font:7.5pt monospace;letter-spacing:.5px}
+#sheet{display:none}
+@media print{@page{size:A4;margin:10mm}body{background:#fff}body>*{display:none!important}body>#sheet{display:grid!important;grid-template-columns:repeat(2,85.6mm);gap:6mm}*{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <img src="logo.png" alt="Logo Tapak Suci">
+  <div><h1>Database Anggota Tapak Suci</h1><p>Cabang Pesantren Al Husna, Sumatera Utara</p></div>
+</div></header>
+
+<main class="wrap">
+  <div class="stats" id="stats"></div>
+  <div id="dirty" class="dirty" hidden>Ada perubahan yang belum disimpan ke GitHub. Tekan “Simpan ke GitHub” agar terlihat oleh semua orang.</div>
+  <div class="bar">
+    <input type="search" id="q" placeholder="Cari nama anggota" aria-label="Cari nama anggota">
+    <select id="ft" aria-label="Filter tingkat"><option value="">Semua tingkat</option><option>Siswa</option><option>Kader</option><option>Pendekar</option></select>
+    <select id="fj" aria-label="Filter jenjang"><option value="">Semua jenjang</option></select>
+  </div>
+  <div class="bar" id="adminbar">
+    <button id="btnAdmin">Masuk admin</button>
+    <span class="sp"></span>
+    <span id="adminTools" hidden style="display:none;gap:8px;flex-wrap:wrap">
+      <button class="gold" id="btnAdd">Tambah anggota</button>
+      <button class="pri" id="btnSave">Simpan ke GitHub</button>
+      <button id="btnKtaAll">Cetak KTA (sesuai filter)</button>
+      <button id="btnExp">Unduh JSON</button>
+      <button id="btnImp">Impor JSON</button>
+      <input type="file" id="file" accept=".json" hidden>
+    </span>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>No</th><th>Nama</th><th>L/P</th><th>Jenjang</th><th>Bergabung</th><th>Status</th><th class="adm" hidden></th></tr></thead>
+    <tbody id="tb"></tbody>
+  </table><div id="empty" class="empty" hidden>Belum ada anggota yang cocok. Ubah kata kunci atau filter.</div></div>
+  <p class="mut" id="upd"></p>
+</main>
+<footer>Data ditampilkan dari berkas data/anggota.json di repositori GitHub.</footer>
+
+<dialog id="dForm"><form method="dialog" id="fForm">
+  <h2 id="fTitle">Tambah anggota</h2>
+  <label for="fNama">Nama lengkap</label><input id="fNama" required>
+  <label for="fJk">Jenis kelamin</label><select id="fJk"><option value="L">Laki-laki</option><option value="P">Perempuan</option></select>
+  <label for="fJenjang">Jenjang</label><select id="fJenjang"></select>
+  <label for="fThn">Tahun bergabung</label><input id="fThn" type="number" min="1963" max="2100">
+  <label for="fStatus">Status</label><select id="fStatus"><option>Aktif</option><option>Tidak aktif</option><option>Alumni</option></select>
+  <label for="fCat">Catatan (opsional)</label><textarea id="fCat" rows="2"></textarea>
+  <div class="row"><button type="button" id="fCancel">Batal</button><button class="pri" type="submit">Simpan anggota</button></div>
+</form></dialog>
+
+<dialog id="dAdmin"><form method="dialog" id="fAdmin">
+  <h2>Masuk admin</h2>
+  <p class="mut">Token hanya disimpan di tab browser ini dan hilang saat tab ditutup. Buat token di GitHub: Settings → Developer settings → Fine-grained tokens, izin <b>Contents: Read and write</b> hanya untuk repositori ini.</p>
+  <label for="cOwner">Username/organisasi GitHub</label><input id="cOwner">
+  <label for="cRepo">Nama repositori</label><input id="cRepo">
+  <label for="cBranch">Branch</label><input id="cBranch" value="main">
+  <label for="cToken">Token GitHub</label><input id="cToken" type="password" autocomplete="off">
+  <div class="row"><button type="button" id="cOut">Keluar admin</button><button type="button" id="cCancel">Batal</button><button class="pri" type="submit">Masuk</button></div>
+</form></dialog>
+
+<dialog id="dDetail"><div id="dvBody"></div><div class="row"><button type="button" class="gold" id="dvKta">Cetak KTA</button><button type="button" id="dvClose">Tutup</button></div></dialog>
+<dialog id="dKta"><h2>Pratinjau KTA</h2><div id="ktaPrev"></div><div class="row"><button type="button" id="kClose">Tutup</button><button type="button" class="pri" id="kPrint">Cetak</button></div></dialog>
+<div id="sheet"></div>
+
+<script>
+const JENJANG=[
+ ["Siswa","Siswa Dasar"],["Siswa","Siswa Satu"],["Siswa","Siswa Dua"],["Siswa","Siswa Tiga"],["Siswa","Siswa Empat"],
+ ["Kader","Kader Dasar"],["Kader","Kader Muda"],["Kader","Kader Madya"],["Kader","Kader Kepala"],["Kader","Kader Utara"],
+ ["Pendekar","Pendekar Muda"],["Pendekar","Pendekar Madya"],["Pendekar","Pendekar Kepala"],["Pendekar","Pendekar Utama"],["Pendekar","Pendekar Besar"]
+];
+// Keterangan tambahan per jenjang (singkatan / sabuk)
+const INFO={"Kader Dasar":"Biru Dasar (K.Da)","Kader Muda":"Biru Melati 1 (K.Ma)","Kader Madya":"Biru Melati 2 (K.Mdy)","Kader Kepala":"Biru Melati 3 (K.Ka)","Kader Utara":"Biru Melati 4 (K.Ua)",
+"Pendekar Muda":"Hitam Melati 1 (P.Ma)","Pendekar Madya":"Hitam Melati 2 (P.Mdy)","Pendekar Kepala":"Hitam Melati 3 (P.Ka)","Pendekar Utama":"Hitam Melati 4 (P.Ua)","Pendekar Besar":"Hitam Melati 5 (P.Br)"};
+const tingkatOf=j=>(JENJANG.find(x=>x[1]===j)||["Siswa"])[0];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let members=[],updated="",dirty=false,editId=null;
+let cfg=guessCfg();
+function guessCfg(){
+  let c={};try{c=JSON.parse(localStorage.getItem("ts_cfg")||"{}")}catch(e){}
+  if(!c.owner&&location.hostname.endsWith(".github.io")){c.owner=location.hostname.split(".")[0];c.repo=location.pathname.split("/")[1]||c.owner+".github.io"}
+  c.branch=c.branch||"main";
+  try{c.token=sessionStorage.getItem("ts_tok")||""}catch(e){c.token=""}
+  return c;
+}
+const isAdmin=()=>!!cfg.token;
+function toast(t){const m=document.createElement("div");m.className="msg";m.textContent=t;document.body.appendChild(m);setTimeout(()=>m.remove(),3500)}
+
+async function load(){
+  try{
+    const r=await fetch("data/anggota.json?v="+Date.now());
+    if(!r.ok)throw 0;
+    const d=await r.json();members=d.anggota||[];updated=d.updated||"";autoNo();
+  }catch(e){members=[];toast("Gagal memuat data/anggota.json")}
+  render();
+}
+function fillJenjang(sel,all){
+  sel.innerHTML=(all?'<option value="">Semua jenjang</option>':"")+JENJANG.map(j=>`<option value="${j[1]}">${j[1]}${INFO[j[1]]?" – "+INFO[j[1]]:""}</option>`).join("");
+}
+function render(){
+  const q=$("q").value.trim().toLowerCase(),ft=$("ft").value,fj=$("fj").value;
+  const list=members.filter(m=>(!q||m.nama.toLowerCase().includes(q))&&(!ft||tingkatOf(m.jenjang)===ft)&&(!fj||m.jenjang===fj))
+    .sort((a,b)=>JENJANG.findIndex(x=>x[1]===b.jenjang)-JENJANG.findIndex(x=>x[1]===a.jenjang)||a.nama.localeCompare(b.nama));
+  shown=list;
+  const cnt=t=>members.filter(m=>tingkatOf(m.jenjang)===t).length;
+  $("stats").innerHTML=`<div class="stat"><b>${members.length}</b><span>Total anggota</span></div>
+   <div class="stat s"><b>${cnt("Siswa")}</b><span>Siswa</span></div>
+   <div class="stat k"><b>${cnt("Kader")}</b><span>Kader</span></div>
+   <div class="stat p"><b>${cnt("Pendekar")}</b><span>Pendekar</span></div>`;
+  const adm=isAdmin();
+  document.querySelectorAll(".adm").forEach(e=>e.hidden=!adm);
+  $("tb").innerHTML=list.map((m,i)=>`<tr><td>${i+1}</td>
+   <td><button class="lnk" data-v="${esc(m.id)}">${esc(m.nama)}</button><div class="mut">${esc(m.noAnggota||"")}</div>${m.catatan?`<div class="mut">${esc(m.catatan)}</div>`:""}</td>
+   <td>${esc(m.jk)}</td>
+   <td><span class="badge b-${tingkatOf(m.jenjang)}">${esc(m.jenjang)}</span>${INFO[m.jenjang]?`<div class="mut">${INFO[m.jenjang]}</div>`:""}</td>
+   <td>${esc(m.bergabung||"-")}</td><td>${esc(m.status)}</td>
+   ${adm?`<td style="white-space:nowrap"><button data-e="${esc(m.id)}">Ubah</button> <button class="del" data-d="${esc(m.id)}">Hapus</button></td>`:""}</tr>`).join("");
+  $("empty").hidden=list.length>0;
+  $("upd").textContent=updated?"Data terakhir diperbarui: "+new Date(updated).toLocaleString("id-ID"):"";
+  $("btnAdmin").textContent=adm?"Admin aktif ("+cfg.owner+")":"Masuk admin";
+  $("adminTools").style.display=adm?"flex":"none";$("adminTools").hidden=!adm;
+  $("dirty").hidden=!(adm&&dirty);
+}
+["q","ft","fj"].forEach(i=>$(i).addEventListener("input",render));
+
+// Form anggota
+function openForm(m){
+  editId=m?m.id:null;$("fTitle").textContent=m?"Ubah anggota":"Tambah anggota";
+  $("fNama").value=m?.nama||"";$("fJk").value=m?.jk||"L";$("fJenjang").value=m?.jenjang||"Siswa Dasar";
+  $("fThn").value=m?.bergabung||new Date().getFullYear();$("fStatus").value=m?.status||"Aktif";$("fCat").value=m?.catatan||"";
+  $("dForm").showModal();
+}
+$("fCancel").onclick=()=>$("dForm").close();
+$("fForm").addEventListener("submit",()=>{
+  const old=members.find(m=>m.id===editId)||{};const o={...old,id:editId||"a"+Date.now().toString(36),nama:$("fNama").value.trim(),jk:$("fJk").value,jenjang:$("fJenjang").value,bergabung:+$("fThn").value||"",status:$("fStatus").value,catatan:$("fCat").value.trim()};
+  if(!o.nama)return;if(!o.noAnggota)o.noAnggota=nextNo(o.bergabung||new Date().getFullYear());
+  const i=members.findIndex(m=>m.id===editId);
+  if(i>=0)members[i]=o;else members.push(o);
+  dirty=true;render();
+});
+$("btnAdd").onclick=()=>openForm();
+$("tb").addEventListener("click",e=>{
+  const ed=e.target.dataset.e,dl=e.target.dataset.d;if(e.target.dataset.v)showDetail(e.target.dataset.v);
+  if(ed)openForm(members.find(m=>m.id===ed));
+  if(dl){const m=members.find(x=>x.id===dl);if(confirm("Hapus "+m.nama+"?")){members=members.filter(x=>x.id!==dl);dirty=true;render()}}
+});
+
+// Admin
+$("btnAdmin").onclick=()=>{$("cOwner").value=cfg.owner||"";$("cRepo").value=cfg.repo||"";$("cBranch").value=cfg.branch;$("cToken").value=cfg.token||"";$("dAdmin").showModal()};
+$("cCancel").onclick=()=>$("dAdmin").close();
+$("cOut").onclick=()=>{cfg.token="";try{sessionStorage.removeItem("ts_tok")}catch(e){}$("dAdmin").close();render()};
+$("fAdmin").addEventListener("submit",()=>{
+  cfg={owner:$("cOwner").value.trim(),repo:$("cRepo").value.trim(),branch:$("cBranch").value.trim()||"main",token:$("cToken").value.trim()};
+  try{localStorage.setItem("ts_cfg",JSON.stringify({owner:cfg.owner,repo:cfg.repo,branch:cfg.branch}));sessionStorage.setItem("ts_tok",cfg.token)}catch(e){}
+  render();
+});
+
+// Simpan ke GitHub
+const b64=s=>btoa(unescape(encodeURIComponent(s)));
+$("btnSave").onclick=async()=>{
+  const url=`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/data/anggota.json`;
+  const h={Authorization:"Bearer "+cfg.token,Accept:"application/vnd.github+json"};
+  $("btnSave").disabled=true;$("btnSave").textContent="Menyimpan…";
+  try{
+    let sha;const r=await fetch(url+"?ref="+encodeURIComponent(cfg.branch),{headers:h});
+    if(r.ok)sha=(await r.json()).sha;else if(r.status!==404)throw new Error("Tidak bisa membaca repositori ("+r.status+"). Periksa token, nama repositori, dan branch.");
+    updated=new Date().toISOString();
+    const body={message:"Perbarui data anggota",branch:cfg.branch,content:b64(JSON.stringify({updated,anggota:members},null,2))};
+    if(sha)body.sha=sha;
+    const p=await fetch(url,{method:"PUT",headers:h,body:JSON.stringify(body)});
+    if(!p.ok)throw new Error("Gagal menyimpan ("+p.status+"). Pastikan token punya izin Contents: Read and write.");
+    dirty=false;toast("Tersimpan di GitHub. Halaman publik diperbarui dalam 1–2 menit.");
+  }catch(e){toast(e.message)}
+  $("btnSave").disabled=false;$("btnSave").textContent="Simpan ke GitHub";render();
+};
+// Ekspor / impor
+$("btnExp").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify({updated:new Date().toISOString(),anggota:members},null,2)],{type:"application/json"}));a.download="anggota.json";a.click()};
+$("btnImp").onclick=()=>$("file").click();
+$("file").onchange=async e=>{
+  try{const d=JSON.parse(await e.target.files[0].text());if(!Array.isArray(d.anggota))throw 0;members=d.anggota;dirty=true;render();toast("Data diimpor. Tekan Simpan ke GitHub untuk menerbitkan.")}catch(x){toast("Berkas JSON tidak valid")}
+  e.target.value="";
+};
+
+let shown=[],cur=null;
+const C128="212222 222122 222221 121223 121322 131222 122213 122312 132212 221213 221312 231212 112232 122132 122231 113222 123122 123221 223211 221132 221231 213212 223112 312131 311222 321122 321221 312212 322112 322211 212123 212321 232121 111323 131123 131321 112313 132113 132311 211313 231113 231311 112133 112331 132131 113123 113321 133121 313121 211331 231131 213113 213311 213131 311123 311321 331121 312113 312311 332111 314111 221411 431111 111224 111422 121124 121421 141122 141221 112214 112412 122114 122411 142112 142211 241211 221114 413111 241112 134111 111242 121142 121241 114212 124112 124211 411212 421112 421211 212141 214121 412121 111143 111341 131141 114113 114311 411113 411311 113141 114131 311141 411131 211412 211214 211232 2331112".split(" ");
+function bars(t){
+  const v=[...t].map(c=>c.charCodeAt(0)-32);let sum=104;v.forEach((x,i)=>sum+=x*(i+1));
+  let x=0,r="";[104,...v,sum%103,106].forEach(c=>{const p=C128[c];for(let i=0;i<p.length;i++){const w=+p[i];if(i%2===0)r+=`<rect x="${x}" width="${w}" height="40"/>`;x+=w}});
+  return `<svg viewBox="-10 0 ${x+20} 40" preserveAspectRatio="none" shape-rendering="crispEdges" role="img" aria-label="Barcode ${esc(t)}"><rect x="-10" width="${x+20}" height="40" fill="#fff"/><g fill="#000">${r}</g></svg>`;
+}
+const card=m=>`<div class="kta"><div class="kh"><img src="logo.png" alt=""><div><b>Kartu Tanda Anggota</b><span>Tapak Suci Putera Muhammadiyah<br>Cabang Pesantren Al Husna, Sumatera Utara</span></div></div>
+<div class="kb"><div class="kn">${esc(m.nama)}</div><div>${esc(m.jenjang)}${INFO[m.jenjang]?" – "+INFO[m.jenjang]:""}</div><div>Bergabung: ${esc(m.bergabung||"-")}</div></div>
+<div class="kc">${bars(m.noAnggota)}<div class="kno">${esc(m.noAnggota)}</div></div></div>`;
+function nextNo(y){const mx=Math.max(0,...members.map(m=>parseInt((m.noAnggota||"").split("-").pop())||0));return `TS-ALH-${y}-${String(mx+1).padStart(4,"0")}`}
+function autoNo(){[...members].filter(m=>!m.noAnggota).sort((a,b)=>(a.bergabung||9999)-(b.bergabung||9999)).forEach(m=>{m.noAnggota=nextNo(m.bergabung||new Date().getFullYear());dirty=true})}
+const tgl=s=>s?new Date(s).toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric",timeZone:"UTC"}):"-";
+function showKta(list){const h=list.map(card).join("");$("ktaPrev").innerHTML=list.length===1?h:"";$("sheet").innerHTML=h;if(list.length===1)$("dKta").showModal();else window.print()}
+function showDetail(id){
+  const m=members.find(x=>x.id===id);if(!m)return;cur=m;const adm=isAdmin();
+  const rw=(m.riwayat||[]).map((r,i)=>({...r,i})).sort((a,b)=>a.tanggal<b.tanggal?1:-1);
+  const ij=m.ijazah||[];
+  $("dvBody").innerHTML=`<h2>${esc(m.nama)}</h2>
+  <p class="mut">${esc(m.noAnggota)} – ${esc(m.jenjang)}${INFO[m.jenjang]?" ("+INFO[m.jenjang]+")":""} – bergabung ${esc(m.bergabung||"-")}</p>
+  <h3>Riwayat naik tingkat</h3>
+  ${rw.length?`<ul>${rw.map(r=>`<li>${tgl(r.tanggal)}: <b>${esc(r.jenjang)}</b>${r.catatan?" ("+esc(r.catatan)+")":""}${adm?` <button class="del" data-act="rDel" data-i="${r.i}">Hapus</button>`:""}</li>`).join("")}</ul>`:'<p class="mut">Belum ada riwayat dicatat.</p>'}
+  ${adm?`<div class="bar"><select id="rJ"></select><input type="date" id="rT" aria-label="Tanggal naik tingkat"><input id="rC" placeholder="Catatan (opsional)"><button class="gold" data-act="rAdd">Catat naik tingkat</button></div>`:""}
+  <h3>Bukti ijazah</h3>
+  ${ij.length?`<ul>${ij.map((f,i)=>`<li><a href="${esc(f.file)}" target="_blank" rel="noopener">${esc(f.ket||"Ijazah")}</a> <span class="mut">${tgl(f.tgl)}</span>${adm?` <button class="del" data-act="iDel" data-i="${i}">Hapus</button>`:""}</li>`).join("")}</ul>`:'<p class="mut">Belum ada bukti ijazah.</p>'}
+  ${adm?`<div class="bar"><input id="uK" placeholder="Keterangan, mis. Ijazah Kader Muda"><input type="file" id="uF" accept="image/*,.pdf"><button class="gold" data-act="uAdd">Unggah berkas</button></div>`:""}`;
+  if(adm){fillJenjang($("rJ"),false);$("rJ").value=m.jenjang;$("rT").value=new Date().toISOString().slice(0,10)}
+  if(!$("dDetail").open)$("dDetail").showModal();
+}
+function syncJenjang(){const r=cur.riwayat||[];if(r.length)cur.jenjang=[...r].sort((a,b)=>a.tanggal<b.tanggal?1:-1)[0].jenjang;dirty=true;render();showDetail(cur.id)}
+const rd=f=>new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>ok(r.result);r.onerror=no;r.readAsDataURL(f)});
+const shrink=u=>new Promise((ok,no)=>{const i=new Image();i.onload=()=>{const s=Math.min(1,1600/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=i.width*s;c.height=i.height*s;c.getContext("2d").drawImage(i,0,0,c.width,c.height);ok(c.toDataURL("image/jpeg",.82))};i.onerror=no;i.src=u});
+async function uploadIjazah(){
+  const f=$("uF").files[0];if(!f)return toast("Pilih berkas ijazah dulu");
+  if(f.size>8e6)return toast("Ukuran berkas maksimal 8 MB");
+  try{
+    let d=await rd(f),ext=(f.name.split(".").pop()||"bin").toLowerCase();
+    if(f.type.startsWith("image/")){d=await shrink(d);ext="jpg"}
+    const path=`ijazah/${cur.id}-${Date.now()}.${ext}`;
+    const p=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${path}`,{method:"PUT",headers:{Authorization:"Bearer "+cfg.token,Accept:"application/vnd.github+json"},body:JSON.stringify({message:"Unggah bukti ijazah",branch:cfg.branch,content:d.split(",")[1]})});
+    if(!p.ok)throw new Error("Gagal mengunggah ("+p.status+"). Periksa token dan izin Contents.");
+    cur.ijazah=[...(cur.ijazah||[]),{file:path,ket:$("uK").value.trim(),tgl:new Date().toISOString().slice(0,10)}];
+    dirty=true;render();showDetail(cur.id);toast("Berkas terunggah. Tekan Simpan ke GitHub untuk mencatatnya.");
+  }catch(e){toast(e.message||"Berkas tidak bisa dibaca")}
+}
+$("dvBody").addEventListener("click",e=>{
+  const a=e.target.dataset.act,i=+e.target.dataset.i;
+  if(a==="rAdd"){if(!$("rT").value)return toast("Isi tanggal naik tingkat");(cur.riwayat=cur.riwayat||[]).push({jenjang:$("rJ").value,tanggal:$("rT").value,catatan:$("rC").value.trim()});syncJenjang()}
+  if(a==="rDel"){cur.riwayat.splice(i,1);syncJenjang()}
+  if(a==="iDel"&&confirm("Hapus catatan berkas ini? (berkas di repositori tidak ikut terhapus)")){cur.ijazah.splice(i,1);dirty=true;render();showDetail(cur.id)}
+  if(a==="uAdd")uploadIjazah();
+});
+$("dvClose").onclick=()=>$("dDetail").close();
+$("dvKta").onclick=()=>{$("dDetail").close();showKta([cur])};
+$("kClose").onclick=()=>$("dKta").close();
+$("kPrint").onclick=()=>window.print();
+$("btnKtaAll").onclick=()=>showKta(shown);
+fillJenjang($("fj"),true);fillJenjang($("fJenjang"),false);load();
+</script>
+</body>
+</html>
