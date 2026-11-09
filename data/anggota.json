@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T16:45:05.064Z",
+  "updated": "2026-11-09T16:46:59.619Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -50,6 +50,16 @@
       "status": "Alumni",
       "catatan": "Koordinator Putri Tapak Suci Cabang Pesantren Al Husna Tahun 2015-2023",
       "noAnggota": "TS-ALH-2009-0005"
+    },
+    {
+      "id": "amw9huhah",
+      "nama": "Faid Ali Khan, S.Pd, K.Mdy",
+      "jk": "L",
+      "jenjang": "Kader Madya",
+      "bergabung": 2015,
+      "status": "Alumni",
+      "catatan": "Pelatih Tapak Suci Cabang Pesantren Al Husna Tahun 2019- 2024",
+      "noAnggota": "TS-ALH-2015-0006"
     }
   ]
 }
