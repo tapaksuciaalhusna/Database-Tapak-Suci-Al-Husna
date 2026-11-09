@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:02:31.471Z",
+  "updated": "2026-11-09T17:03:42.697Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -190,6 +190,26 @@
       "status": "Aktif",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2018-0019"
+    },
+    {
+      "id": "amw9if5yt",
+      "nama": "Anisa Putri, K.Da",
+      "jk": "P",
+      "jenjang": "Siswa Dasar",
+      "bergabung": 2018,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2018-0020"
+    },
+    {
+      "id": "amw9ifxpa",
+      "nama": "Fatiyah Zuhra Nasution, K.Da",
+      "jk": "P",
+      "jenjang": "Siswa Dasar",
+      "bergabung": 2018,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2018-0021"
     }
   ]
 }
