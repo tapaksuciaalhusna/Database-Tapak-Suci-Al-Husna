@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:48:21.043Z",
+  "updated": "2026-11-09T17:49:32.372Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -530,6 +530,16 @@
       "status": "Alumni",
       "catatan": "Kader Tapak Suci Cabang Pesatren Al Husna",
       "noAnggota": "TS-ALH-2014-0053"
+    },
+    {
+      "id": "amw9k2we7",
+      "nama": "Abdardi, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2014,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesatren Al Husna",
+      "noAnggota": "TS-ALH-2014-0054"
     }
   ]
 }
