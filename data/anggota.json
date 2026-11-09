@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:44:28.000Z",
+  "updated": "2026-11-09T17:45:49.431Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -500,6 +500,16 @@
       "status": "Alumni",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2018-0050"
+    },
+    {
+      "id": "amw9jy4kx",
+      "nama": "Nurfadilla, K.Da",
+      "jk": "P",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2014,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesatren Al Husna",
+      "noAnggota": "TS-ALH-2014-0051"
     }
   ]
 }
