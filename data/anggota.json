@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:28:50.637Z",
+  "updated": "2026-11-09T17:44:28.000Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -490,6 +490,16 @@
       "status": "Aktif",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2021-0049"
+    },
+    {
+      "id": "amw9jwd77",
+      "nama": "Haikal Aulia Rahman, K.Ma",
+      "jk": "L",
+      "jenjang": "Kader Muda",
+      "bergabung": 2018,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2018-0050"
     }
   ]
 }
