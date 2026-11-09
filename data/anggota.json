@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T16:50:29.865Z",
+  "updated": "2026-11-09T16:52:03.632Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -90,6 +90,16 @@
       "status": "Aktif",
       "catatan": "Kader/Pelatih Tapak Suci Cabang Pesantren Al Husna Tahun 2025-Sekarang",
       "noAnggota": "TS-ALH-2018-0009"
+    },
+    {
+      "id": "amw9i10n6",
+      "nama": "Ahmad Sodikin, K.Ma",
+      "jk": "L",
+      "jenjang": "Kader Muda",
+      "bergabung": 2018,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2018-0010"
     }
   ]
 }
