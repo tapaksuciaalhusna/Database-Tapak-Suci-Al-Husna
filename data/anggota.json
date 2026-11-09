@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:26:33.187Z",
+  "updated": "2026-11-09T17:28:50.637Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -440,6 +440,56 @@
       "status": "Aktif",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2020-0044"
+    },
+    {
+      "id": "amw9ja3hq",
+      "nama": "Ahmad Kamal, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2021,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2021-0045"
+    },
+    {
+      "id": "amw9jan0o",
+      "nama": "Fahri Akbar Prasetio, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2021,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2021-0046"
+    },
+    {
+      "id": "amw9jb6kk",
+      "nama": "Muhammad Rizki Pratama, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2021,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2021-0047"
+    },
+    {
+      "id": "amw9jbnw1",
+      "nama": "Keril Ahmad Gufri Baeha, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2021,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2021-0048"
+    },
+    {
+      "id": "amw9jc9e6",
+      "nama": "Muhammad Suryadi Nst, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2021,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2021-0049"
     }
   ]
 }
