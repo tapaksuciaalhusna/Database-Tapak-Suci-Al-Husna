@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T16:49:19.266Z",
+  "updated": "2026-11-09T16:50:29.865Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -80,6 +80,16 @@
       "status": "Aktif",
       "catatan": "Pelatih MIS Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2015-0008"
+    },
+    {
+      "id": "amw9hypwn",
+      "nama": "Hamzah Sa'bandi, K.Ma",
+      "jk": "L",
+      "jenjang": "Kader Muda",
+      "bergabung": 2018,
+      "status": "Aktif",
+      "catatan": "Kader/Pelatih Tapak Suci Cabang Pesantren Al Husna Tahun 2025-Sekarang",
+      "noAnggota": "TS-ALH-2018-0009"
     }
   ]
 }
