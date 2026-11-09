@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T18:06:09.954Z",
+  "updated": "2026-11-09T18:07:17.513Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -580,6 +580,16 @@
       "status": "Alumni",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2015-0058"
+    },
+    {
+      "id": "amw9kpdeq",
+      "nama": "Imam Syafi'i Harahap, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2012,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2012-0059"
     }
   ]
 }
