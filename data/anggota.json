@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T16:39:10.876Z",
+  "updated": "2026-11-09T16:40:35.199Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -30,6 +30,16 @@
       "status": "Aktif",
       "catatan": "Pelatih Tapak Suci Cabang Pesantren Al Husna 2015-2017",
       "noAnggota": "TS-ALH-2014-0003"
+    },
+    {
+      "id": "amw9hm9ps",
+      "nama": "Al Husein, S.Kom, K.Ka",
+      "jk": "L",
+      "jenjang": "Kader Kepala",
+      "bergabung": 2015,
+      "status": "Aktif",
+      "catatan": "Sekretaris Tapak Suci Cabang Pesantren Al Husna 2018-sekarang",
+      "noAnggota": "TS-ALH-2015-0004"
     }
   ]
 }
