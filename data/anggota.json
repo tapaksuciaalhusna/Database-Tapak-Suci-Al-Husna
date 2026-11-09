@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:51:54.058Z",
+  "updated": "2026-11-09T17:53:04.923Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -550,6 +550,26 @@
       "status": "Aktif",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2014-0055"
+    },
+    {
+      "id": "amw9k6snt",
+      "nama": "Aida Afriani Daulay, K.Mdy",
+      "jk": "P",
+      "jenjang": "Kader Madya",
+      "bergabung": 2014,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2014-0056"
+    },
+    {
+      "id": "amw9k7htz",
+      "nama": "Bagus Ardiansyah, S.Ag, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2013,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2013-0057"
     }
   ]
 }
