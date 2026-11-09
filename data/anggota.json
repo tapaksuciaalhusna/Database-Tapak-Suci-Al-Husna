@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:59:18.447Z",
+  "updated": "2026-11-09T18:06:09.954Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -570,6 +570,16 @@
       "status": "Alumni",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2013-0057"
+    },
+    {
+      "id": "amw9ko9v3",
+      "nama": "Maulana Ahmad Habibi, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2015,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2015-0058"
     }
   ]
 }
