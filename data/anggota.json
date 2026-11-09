@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T16:48:17.731Z",
+  "updated": "2026-11-09T16:49:19.266Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -70,6 +70,16 @@
       "status": "Aktif",
       "catatan": "Kader/Pelatih Tapak Suci Cabang Pesantren Al Husna Tahun 2023-2025",
       "noAnggota": "TS-ALH-2018-0007"
+    },
+    {
+      "id": "amw9hxijv",
+      "nama": "M Khaidir Rahmatullah, S.Pd, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2015,
+      "status": "Aktif",
+      "catatan": "Pelatih MIS Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2015-0008"
     }
   ]
 }
