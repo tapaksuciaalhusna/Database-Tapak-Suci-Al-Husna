@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:49:32.372Z",
+  "updated": "2026-11-09T17:51:54.058Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -540,6 +540,16 @@
       "status": "Alumni",
       "catatan": "Kader Tapak Suci Cabang Pesatren Al Husna",
       "noAnggota": "TS-ALH-2014-0054"
+    },
+    {
+      "id": "amw9k5z7z",
+      "nama": "Widia Carles, K.Da",
+      "jk": "P",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2014,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2014-0055"
     }
   ]
 }
