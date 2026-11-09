@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T16:54:37.145Z",
+  "updated": "2026-11-09T16:56:39.011Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -110,6 +110,26 @@
       "status": "Alumni",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2018-0011"
+    },
+    {
+      "id": "amw9i5dh2",
+      "nama": "Hary Gunawan, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2015,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2015-0012"
+    },
+    {
+      "id": "amw9i6iu2",
+      "nama": "Mhd Rizky Abdillah Tanjung, S.H, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2015,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2015-0013"
     }
   ]
 }
