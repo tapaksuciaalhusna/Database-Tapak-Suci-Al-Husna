@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T16:40:35.199Z",
+  "updated": "2026-11-09T16:45:05.064Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -40,6 +40,16 @@
       "status": "Aktif",
       "catatan": "Sekretaris Tapak Suci Cabang Pesantren Al Husna 2018-sekarang",
       "noAnggota": "TS-ALH-2015-0004"
+    },
+    {
+      "id": "amw9hrw6h",
+      "nama": "Fitry Noerjannah, S.E, K.Ka",
+      "jk": "P",
+      "jenjang": "Kader Kepala",
+      "bergabung": 2009,
+      "status": "Alumni",
+      "catatan": "Koordinator Putri Tapak Suci Cabang Pesantren Al Husna Tahun 2015-2023",
+      "noAnggota": "TS-ALH-2009-0005"
     }
   ]
 }
