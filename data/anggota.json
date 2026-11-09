@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:15:34.108Z",
+  "updated": "2026-11-09T17:17:12.932Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -320,6 +320,36 @@
       "status": "Alumni",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2018-0032"
+    },
+    {
+      "id": "amw9ivxop",
+      "nama": "M Ramadhani, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2018,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2018-0033"
+    },
+    {
+      "id": "amw9iwhdv",
+      "nama": "Fahmi Pratama, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2018,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2018-0034"
+    },
+    {
+      "id": "amw9ixaua",
+      "nama": "Fidya Amanda, K.Ma",
+      "jk": "P",
+      "jenjang": "Kader Muda",
+      "bergabung": 2017,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2017-0035"
     }
   ]
 }
