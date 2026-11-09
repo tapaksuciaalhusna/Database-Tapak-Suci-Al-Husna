@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:08:47.814Z",
+  "updated": "2026-11-09T17:10:13.042Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -270,6 +270,26 @@
       "status": "Alumni",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2012-0027"
+    },
+    {
+      "id": "amw9inptp",
+      "nama": "Muhammad Qadavi, K.Da",
+      "jk": "P",
+      "jenjang": "Siswa Dasar",
+      "bergabung": 2017,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2017-0028"
+    },
+    {
+      "id": "amw9iodto",
+      "nama": "Halim Efendi Tanjung, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2017,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2017-0029"
     }
   ]
 }
