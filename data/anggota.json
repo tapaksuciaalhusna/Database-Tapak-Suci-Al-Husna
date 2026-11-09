@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:45:49.431Z",
+  "updated": "2026-11-09T17:47:18.708Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -510,6 +510,26 @@
       "status": "Alumni",
       "catatan": "Kader Tapak Suci Cabang Pesatren Al Husna",
       "noAnggota": "TS-ALH-2014-0051"
+    },
+    {
+      "id": "amw9jyzn3",
+      "nama": "Ahlan Nawari Daulay, S.H, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2014,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesatren Al Husna",
+      "noAnggota": "TS-ALH-2014-0052"
+    },
+    {
+      "id": "amw9k01hy",
+      "nama": "Yoppie Abdillah Fajar, K.Ma",
+      "jk": "L",
+      "jenjang": "Kader Muda",
+      "bergabung": 2014,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesatren Al Husna",
+      "noAnggota": "TS-ALH-2014-0053"
     }
   ]
 }
