@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:14:22.942Z",
+  "updated": "2026-11-09T17:15:34.108Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -300,6 +300,26 @@
       "status": "Aktif",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2013-0030"
+    },
+    {
+      "id": "amw9iulpa",
+      "nama": "Achmad Miftah Al Huda, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2018,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2018-0031"
+    },
+    {
+      "id": "amw9iv9f6",
+      "nama": "Mhd Khatam Harahap, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2018,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2018-0032"
     }
   ]
 }
