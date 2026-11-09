@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T16:52:03.632Z",
+  "updated": "2026-11-09T16:54:37.145Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -100,6 +100,16 @@
       "status": "Aktif",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2018-0010"
+    },
+    {
+      "id": "amw9i4boq",
+      "nama": "Sefaduta Nur Perdana, K.Ma",
+      "jk": "L",
+      "jenjang": "Kader Muda",
+      "bergabung": 2018,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2018-0011"
     }
   ]
 }
