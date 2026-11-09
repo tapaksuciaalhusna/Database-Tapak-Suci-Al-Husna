@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T18:09:41.550Z",
+  "updated": "2026-11-09T18:11:53.524Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -572,14 +572,34 @@
       "noAnggota": "TS-ALH-2013-0057"
     },
     {
-      "id": "amw9kss7a",
+      "id": "amw9ko9v3",
       "nama": "Maulana Ahmad Habibi, K.Da",
       "jk": "L",
       "jenjang": "Kader Dasar",
       "bergabung": 2015,
-      "status": "Aktif",
+      "status": "Alumni",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2015-0058"
+    },
+    {
+      "id": "amw9kpdeq",
+      "nama": "Imam Syafi'i Harahap, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2012,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2012-0059"
+    },
+    {
+      "id": "amw9kvmiu",
+      "nama": "Nur Wahid",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2017,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2017-0060"
     }
   ]
 }
