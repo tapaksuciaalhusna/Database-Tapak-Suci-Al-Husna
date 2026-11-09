@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:05:01.812Z",
+  "updated": "2026-11-09T17:06:12.407Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -220,6 +220,16 @@
       "status": "Aktif",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2015-0022"
+    },
+    {
+      "id": "amw9ij63o",
+      "nama": "Prada Idris Ali Wijaya, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2015,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2015-0023"
     }
   ]
 }
