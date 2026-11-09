@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:19:31.676Z",
+  "updated": "2026-11-09T17:21:21.249Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -360,6 +360,36 @@
       "status": "Aktif",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2017-0036"
+    },
+    {
+      "id": "amw9j1egm",
+      "nama": "Mhd Hafiz Yunus, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2019,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2019-0037"
+    },
+    {
+      "id": "amw9j203u",
+      "nama": "Amrizal Padang, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2019,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2019-0038"
+    },
+    {
+      "id": "amw9j2msy",
+      "nama": "Aulia Umri Gultom, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2019,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2019-0039"
     }
   ]
 }
