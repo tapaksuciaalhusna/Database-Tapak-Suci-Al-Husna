@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:21:21.249Z",
+  "updated": "2026-11-09T17:23:40.579Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -390,6 +390,56 @@
       "status": "Alumni",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2019-0039"
+    },
+    {
+      "id": "amw9j3kdf",
+      "nama": "Aidil Wahyudi Syahman, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2020,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2020-0040"
+    },
+    {
+      "id": "amw9j3yhp",
+      "nama": "M Roqi Al Jabbar, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2026,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2026-0041"
+    },
+    {
+      "id": "amw9j4gdy",
+      "nama": "Raka Sembiring, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2019,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2019-0042"
+    },
+    {
+      "id": "amw9j4zwh",
+      "nama": "Khairunnisa, K.Da",
+      "jk": "P",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2020,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2020-0043"
+    },
+    {
+      "id": "amw9j5hmx",
+      "nama": "Nur Putri Malika, K.Da",
+      "jk": "P",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2020,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2020-0044"
     }
   ]
 }
