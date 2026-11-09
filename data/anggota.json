@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:06:12.407Z",
+  "updated": "2026-11-09T17:07:32.633Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -230,6 +230,26 @@
       "status": "Aktif",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2015-0023"
+    },
+    {
+      "id": "amw9ijxz1",
+      "nama": "Prada Ibnu Zacky Muzaffar, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2026,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2026-0024"
+    },
+    {
+      "id": "amw9ikwaw",
+      "nama": "Satria Prolihen Dabutar, K.Ma",
+      "jk": "L",
+      "jenjang": "Kader Muda",
+      "bergabung": 2017,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2017-0025"
     }
   ]
 }
