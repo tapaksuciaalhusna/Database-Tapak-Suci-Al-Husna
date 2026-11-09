@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:07:32.633Z",
+  "updated": "2026-11-09T17:08:47.814Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -250,6 +250,26 @@
       "status": "Aktif",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2017-0025"
+    },
+    {
+      "id": "amw9ilhw5",
+      "nama": "Qori Ahmad, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2017,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2017-0026"
+    },
+    {
+      "id": "amw9imhty",
+      "nama": "Astri Iga Mawarni, S.Pd, K.Ma",
+      "jk": "P",
+      "jenjang": "Siswa Dasar",
+      "bergabung": 2012,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2012-0027"
     }
   ]
 }
