@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T16:59:41.653Z",
+  "updated": "2026-11-09T17:00:57.999Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -140,6 +140,26 @@
       "status": "Alumni",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2015-0014"
+    },
+    {
+      "id": "amw9ibu37",
+      "nama": "Ailsa Rira Sinaga, K.Ma",
+      "jk": "P",
+      "jenjang": "Siswa Dasar",
+      "bergabung": 2015,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2015-0015"
+    },
+    {
+      "id": "amw9icfno",
+      "nama": "Shobariah, K.Ma",
+      "jk": "P",
+      "jenjang": "Siswa Dasar",
+      "bergabung": 2015,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2015-0016"
     }
   ]
 }
