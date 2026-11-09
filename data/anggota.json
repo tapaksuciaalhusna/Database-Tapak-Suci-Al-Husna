@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T16:56:39.011Z",
+  "updated": "2026-11-09T16:58:38.889Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -130,6 +130,16 @@
       "status": "Alumni",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2015-0013"
+    },
+    {
+      "id": "amw9i8dms",
+      "nama": "Fahri Hanif Rais Wibowo, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2015,
+      "status": "Alumni",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2015-0014"
     }
   ]
 }
