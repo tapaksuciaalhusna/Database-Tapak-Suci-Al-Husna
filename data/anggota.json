@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T16:37:40.356Z",
+  "updated": "2026-11-09T16:39:10.876Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -20,6 +20,16 @@
       "status": "Aktif",
       "catatan": "Koordinator Tapak Suci Cabang Pesantren Al Husna 2015-2025",
       "noAnggota": "TS-ALH-2009-0002"
+    },
+    {
+      "id": "amw9hkfzz",
+      "nama": "Ikram Khairi Lubis, S.Pd, K.Ma",
+      "jk": "L",
+      "jenjang": "Kader Muda",
+      "bergabung": 2014,
+      "status": "Aktif",
+      "catatan": "Pelatih Tapak Suci Cabang Pesantren Al Husna 2015-2017",
+      "noAnggota": "TS-ALH-2014-0003"
     }
   ]
 }
