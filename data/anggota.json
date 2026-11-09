@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T17:12:55.536Z",
+  "updated": "2026-11-09T17:14:22.942Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -290,6 +290,16 @@
       "status": "Alumni",
       "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
       "noAnggota": "TS-ALH-2017-0029"
+    },
+    {
+      "id": "amw9itq4b",
+      "nama": "Rafli Syaputra, K.Da",
+      "jk": "L",
+      "jenjang": "Kader Dasar",
+      "bergabung": 2013,
+      "status": "Aktif",
+      "catatan": "Kader Tapak Suci Cabang Pesantren Al Husna",
+      "noAnggota": "TS-ALH-2013-0030"
     }
   ]
 }
