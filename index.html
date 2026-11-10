@@ -136,18 +136,19 @@ footer{color:var(--mut);font-size:.85rem;text-align:center;padding:0 16px 30px}
     <button id="btnImp">Impor Excel</button>
     <a class="btn" href="templat-anggota.xlsx" download>Unduh templat Excel</a>
     <button id="btnKtaAll">Cetak banyak KTA</button>
+    <button id="btnMig">Muat data lama (JSON)</button>
     <button id="btnExp">Unduh JSON</button>
     <button id="btnInfo">Tambah informasi</button>
     <button id="btnGal">Tambah foto galeri</button>
     <button id="btnProfil">Ubah profil</button>
     <input type="file" id="file" accept=".xlsx,.xls,.csv" hidden>
   </div>
-  <div class="sidefoot"><button class="pri" id="btnSave" hidden>Simpan ke GitHub</button><button id="btnAdmin">Masuk admin</button></div>
+  <div class="sidefoot"><button class="pri" id="btnSave" hidden>Simpan ke database</button><button id="btnAdmin">Masuk admin</button></div>
 </aside>
 <div class="content">
   <header class="top"><button id="burger" aria-label="Buka menu">Menu</button><h1 id="pageTitle">Beranda</h1></header>
   <main>
-    <div id="dirty" class="dirty" hidden>Ada perubahan yang belum disimpan ke GitHub. Tekan “Simpan ke GitHub” di menu agar terlihat oleh semua orang.</div>
+    <div id="dirty" class="dirty" hidden>Ada perubahan yang belum disimpan ke database. Tekan “Simpan ke database” di menu agar terlihat oleh semua orang.</div>
     <div id="pgHome">
       <div id="hTop"></div>
       <section class="card srch"><label for="hq">Cari anggota</label><input type="search" id="hq" placeholder="Ketik nama atau nomor anggota (minimal 2 huruf)" autocomplete="off"><div id="sres" aria-live="polite"></div></section>
@@ -187,12 +188,10 @@ footer{color:var(--mut);font-size:.85rem;text-align:center;padding:0 16px 30px}
 
 <dialog id="dAdmin"><form method="dialog" id="fAdmin">
   <h2>Masuk admin</h2>
-  <p class="mut">Token hanya disimpan di tab browser ini dan hilang saat tab ditutup. Buat token di GitHub: Settings → Developer settings → Fine-grained tokens, izin <b>Contents: Read and write</b> hanya untuk repositori ini.</p>
-  <label for="cOwner">Username/organisasi GitHub</label><input id="cOwner">
-  <label for="cRepo">Nama repositori</label><input id="cRepo">
-  <label for="cBranch">Branch</label><input id="cBranch" value="main">
-  <label for="cToken">Token GitHub</label><input id="cToken" type="password" autocomplete="off">
-  <div class="row"><button type="button" id="cOut">Keluar admin</button><button type="button" id="cCancel">Batal</button><button class="pri" type="submit">Masuk</button></div>
+  <p class="mut">Gunakan email dan kata sandi akun admin yang dibuat di Supabase.</p>
+  <label for="cEmail">Email</label><input id="cEmail" type="email" autocomplete="username" required>
+  <label for="cPass">Kata sandi</label><input id="cPass" type="password" autocomplete="current-password" required>
+  <div class="row"><button type="button" data-close>Batal</button><button class="pri" type="submit">Masuk</button></div>
 </form></dialog>
 
 <dialog id="dDetail"><div id="dvBody"></div><div class="row"><button type="button" class="gold" id="dvKta">Cetak KTA</button><button type="button" id="dvClose">Tutup</button></div></dialog>
@@ -217,36 +216,72 @@ footer{color:var(--mut);font-size:.85rem;text-align:center;padding:0 16px 30px}
 <div id="sheet"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="config.js"></script>
 <script>
 const JENJANG=[
  ["Siswa","Siswa Dasar"],["Siswa","Siswa Satu"],["Siswa","Siswa Dua"],["Siswa","Siswa Tiga"],["Siswa","Siswa Empat"],
- ["Kader","Kader Dasar"],["Kader","Kader Muda"],["Kader","Kader Madya"],["Kader","Kader Kepala"],["Kader","Kader Utama"],
+ ["Kader","Kader Dasar"],["Kader","Kader Muda"],["Kader","Kader Madya"],["Kader","Kader Kepala"],["Kader","Kader Utara"],
  ["Pendekar","Pendekar Muda"],["Pendekar","Pendekar Madya"],["Pendekar","Pendekar Kepala"],["Pendekar","Pendekar Utama"],["Pendekar","Pendekar Besar"]
 ];
 // Keterangan tambahan per jenjang (singkatan / sabuk)
-const INFO={"Kader Dasar":"Biru Dasar (K.Da)","Kader Muda":"Biru Melati 1 (K.Ma)","Kader Madya":"Biru Melati 2 (K.Mdy)","Kader Kepala":"Biru Melati 3 (K.Ka)","Kader Utama":"Biru Melati 4 (K.Ua)",
+const INFO={"Kader Dasar":"Biru Dasar (K.Da)","Kader Muda":"Biru Melati 1 (K.Ma)","Kader Madya":"Biru Melati 2 (K.Mdy)","Kader Kepala":"Biru Melati 3 (K.Ka)","Kader Utara":"Biru Melati 4 (K.Ua)",
 "Pendekar Muda":"Hitam Melati 1 (P.Ma)","Pendekar Madya":"Hitam Melati 2 (P.Mdy)","Pendekar Kepala":"Hitam Melati 3 (P.Ka)","Pendekar Utama":"Hitam Melati 4 (P.Ua)","Pendekar Besar":"Hitam Melati 5 (P.Br)"};
 const tingkatOf=j=>(JENJANG.find(x=>x[1]===j)||["Siswa"])[0];
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let members=[],updated="",dirty=false,editId=null;
-let cfg=guessCfg();
-function guessCfg(){
-  let c={};try{c=JSON.parse(localStorage.getItem("ts_cfg")||"{}")}catch(e){}
-  if(!c.owner&&location.hostname.endsWith(".github.io")){c.owner=location.hostname.split(".")[0];c.repo=location.pathname.split("/")[1]||c.owner+".github.io"}
-  c.branch=c.branch||"main";
-  try{c.token=sessionStorage.getItem("ts_tok")||""}catch(e){c.token=""}
-  return c;
+const SB_URL=(typeof SUPABASE_URL!=="undefined"?SUPABASE_URL:"").replace(/\/$/,""),SB_KEY=typeof SUPABASE_KEY!=="undefined"?SUPABASE_KEY:"",SB_ON=!!(SB_URL&&SB_KEY);
+let sess=null;try{sess=JSON.parse(localStorage.getItem("ts_sess")||"null")}catch(e){}
+const isAdmin=()=>!!(SB_ON&&sess);
+function setSess(d){sess={at:d.access_token,rt:d.refresh_token,exp:Math.floor(Date.now()/1000)+(d.expires_in||3600),email:(d.user&&d.user.email)||(sess&&sess.email)||""};try{localStorage.setItem("ts_sess",JSON.stringify(sess))}catch(e){}}
+function logout(){sess=null;try{localStorage.removeItem("ts_sess")}catch(e){}render()}
+async function refresh(){
+  const r=await fetch(SB_URL+"/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:{apikey:SB_KEY,"Content-Type":"application/json"},body:JSON.stringify({refresh_token:sess.rt})});
+  if(!r.ok){logout();throw new Error("Sesi berakhir. Silakan masuk lagi.")}
+  setSess(await r.json());
 }
-const isAdmin=()=>!!cfg.token;
+async function api(path,opt={}){
+  if(sess&&sess.exp-60<Date.now()/1000)await refresh();
+  const h={apikey:SB_KEY,...(opt.headers||{})};if(sess)h.Authorization="Bearer "+sess.at;
+  return fetch(SB_URL+path,{...opt,headers:h});
+}
+async function err(r){let t="";try{const j=await r.json();t=j.message||j.msg||j.error_description||j.error||""}catch(e){}return new Error((t||"Permintaan gagal")+" ("+r.status+")")}
+async function sel(t,qs=""){let all=[],o=0;for(;;){const r=await api(`/rest/v1/${t}?select=*${qs}&limit=1000&offset=${o}`);if(!r.ok)throw await err(r);const a=await r.json();all=all.concat(a);if(a.length<1000)return all;o+=1000}}
+async function upBlob(bucket,path,dataUrl){
+  const blob=await (await fetch(dataUrl)).blob();
+  const r=await api(`/storage/v1/object/${bucket}/${path}`,{method:"POST",headers:{"Content-Type":blob.type||"application/octet-stream"},body:blob});
+  if(!r.ok)throw await err(r);
+  return bucket==="media"?`${SB_URL}/storage/v1/object/public/media/${path}`:path;
+}
+async function openIjazah(path){
+  const w=window.open("","_blank");
+  try{const r=await api(`/storage/v1/object/sign/ijazah/${path}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({expiresIn:300})});
+    if(!r.ok)throw await err(r);const d=await r.json();w.location=SB_URL+"/storage/v1"+d.signedURL}
+  catch(e){if(w)w.close();toast(e.message)}
+}
+const toRow=m=>({id:m.id,no_anggota:m.noAnggota||null,nama:m.nama,jk:m.jk,jenjang:m.jenjang,bergabung:m.bergabung||null,status:m.status||"Aktif",catatan:m.catatan||"",foto:m.foto||null,riwayat:m.riwayat||[],ijazah:m.ijazah||[],updated_at:new Date().toISOString()});
+const fromRow=r=>({id:r.id,noAnggota:r.no_anggota||"",nama:r.nama,jk:r.jk,jenjang:r.jenjang,bergabung:r.bergabung||"",status:r.status||"Aktif",catatan:r.catatan||"",foto:r.foto||"",riwayat:r.riwayat||[],ijazah:r.ijazah||[]});
+const sig=m=>JSON.stringify(fromRow(toRow(m)));
+let snap=new Map();
+async function saveAll(){
+  const cur=new Map(members.map(m=>[m.id,sig(m)]));
+  const up=members.filter(m=>snap.get(m.id)!==cur.get(m.id)).map(toRow),del=[...snap.keys()].filter(id=>!cur.has(id));
+  const J={"Content-Type":"application/json",Prefer:"resolution=merge-duplicates,return=minimal"};
+  if(up.length){const r=await api("/rest/v1/anggota?on_conflict=id",{method:"POST",headers:J,body:JSON.stringify(up)});if(!r.ok)throw await err(r)}
+  if(del.length){const r=await api("/rest/v1/anggota?id=in."+encodeURIComponent("("+del.map(i=>'"'+i+'"').join(",")+")"),{method:"DELETE"});if(!r.ok)throw await err(r)}
+  updated=new Date().toISOString();beranda.updated=updated;
+  const r=await api("/rest/v1/beranda?on_conflict=id",{method:"POST",headers:J,body:JSON.stringify([{id:"main",profil:beranda.profil,info:beranda.info,galeri:beranda.galeri,updated_at:updated}])});
+  if(!r.ok)throw await err(r);
+  snap=cur;
+}
 function toast(t){const m=document.createElement("div");m.className="msg";m.textContent=t;document.body.appendChild(m);setTimeout(()=>m.remove(),3500)}
 
 async function load(){
   try{
-    const r=await fetch("data/anggota.json?v="+Date.now());
-    if(!r.ok)throw 0;
-    const d=await r.json();members=d.anggota||[];updated=d.updated||"";autoNo();
-  }catch(e){members=[];toast("Gagal memuat data/anggota.json")}
+    if(SB_ON){const rows=await sel("anggota","&order=nama.asc");members=rows.map(fromRow);updated=rows.reduce((a,r)=>r.updated_at>a?r.updated_at:a,"");snap=new Map(members.map(m=>[m.id,sig(m)]))}
+    else{const r=await fetch("data/anggota.json?v="+Date.now());if(!r.ok)throw 0;const d=await r.json();members=d.anggota||[];updated=d.updated||""}
+    autoNo();
+  }catch(e){members=[];toast("Gagal memuat data anggota. Periksa config.js dan pengaturan Supabase.")}
   render();
 }
 function fillJenjang(sel,all){
@@ -285,7 +320,7 @@ function render(){
     $("empty").hidden=list.length>0;
   }
   $("upd").textContent=updated?"Data terakhir diperbarui: "+new Date(updated).toLocaleString("id-ID"):"";
-  $("btnAdmin").textContent=adm?"Admin aktif ("+cfg.owner+")":"Masuk admin";
+  $("btnAdmin").textContent=adm?"Keluar ("+sess.email+")":"Masuk admin";
   $("adminTools").style.display=adm?"flex":"none";$("adminTools").hidden=!adm;
   $("dirty").hidden=!(adm&&dirty);$("btnSave").hidden=!adm;
 }
@@ -318,45 +353,47 @@ $("tb").addEventListener("click",e=>{
 });
 
 // Admin
-$("btnAdmin").onclick=()=>{$("cOwner").value=cfg.owner||"";$("cRepo").value=cfg.repo||"";$("cBranch").value=cfg.branch;$("cToken").value=cfg.token||"";$("dAdmin").showModal()};
-$("cCancel").onclick=()=>$("dAdmin").close();
-$("cOut").onclick=()=>{cfg.token="";try{sessionStorage.removeItem("ts_tok")}catch(e){}$("dAdmin").close();render()};
-$("fAdmin").addEventListener("submit",()=>{
-  cfg={owner:$("cOwner").value.trim(),repo:$("cRepo").value.trim(),branch:$("cBranch").value.trim()||"main",token:$("cToken").value.trim()};
-  try{localStorage.setItem("ts_cfg",JSON.stringify({owner:cfg.owner,repo:cfg.repo,branch:cfg.branch}));sessionStorage.setItem("ts_tok",cfg.token)}catch(e){}
-  render();
+$("btnAdmin").onclick=()=>{
+  if(!SB_ON)return toast("Supabase belum diatur. Isi SUPABASE_URL dan SUPABASE_KEY di config.js.");
+  if(sess){if(!dirty||confirm("Ada perubahan yang belum disimpan. Tetap keluar?")){logout();toast("Anda sudah keluar")}return}
+  $("dAdmin").showModal();
+};
+$("fAdmin").addEventListener("submit",async()=>{
+  try{
+    const r=await fetch(SB_URL+"/auth/v1/token?grant_type=password",{method:"POST",headers:{apikey:SB_KEY,"Content-Type":"application/json"},body:JSON.stringify({email:$("cEmail").value.trim(),password:$("cPass").value})});
+    const d=await r.json();$("cPass").value="";
+    if(!r.ok)throw new Error(r.status===400?"Email atau kata sandi salah":(d.msg||d.error_description||"Gagal masuk"));
+    setSess(d);
+    const a=await api("/rest/v1/rpc/is_admin",{method:"POST",headers:{"Content-Type":"application/json"},body:"{}"});
+    if(!a.ok||(await a.json())!==true){logout();return toast("Akun ini belum terdaftar sebagai admin.")}
+    toast("Berhasil masuk sebagai admin");render();
+  }catch(e){toast(e.message)}
 });
+$("btnMig").onclick=async()=>{
+  try{
+    const a=await (await fetch("data/anggota.json?v="+Date.now())).json(),b=await (await fetch("data/beranda.json?v="+Date.now())).json();
+    const have=new Set(members.map(m=>m.id)),add=(a.anggota||[]).filter(m=>!have.has(m.id));
+    if(!confirm(`${add.length} anggota dari data lama akan ditambahkan. Lanjutkan?`))return;
+    members.push(...add);autoNo();
+    if(!beranda.info.length&&!beranda.galeri.length)beranda={updated:"",profil:{...DEFB.profil,...b.profil},info:b.info||[],galeri:b.galeri||[]};
+    dirty=true;render();toast("Data lama dimuat. Tekan Simpan ke database untuk menyimpannya.");
+  }catch(e){toast("Berkas data lama (data/anggota.json) tidak ditemukan")}
+};
+window.addEventListener("beforeunload",e=>{if(dirty&&isAdmin()){e.preventDefault();e.returnValue=""}});
 
-// Simpan ke GitHub
+// Simpan ke database
 const b64=s=>btoa(unescape(encodeURIComponent(s)));
-async function putFile(path,obj){
-  const url=`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${path}`,h={Authorization:"Bearer "+cfg.token,Accept:"application/vnd.github+json"};
-  let sha;const r=await fetch(url+"?ref="+encodeURIComponent(cfg.branch),{headers:h});
-  if(r.ok)sha=(await r.json()).sha;else if(r.status!==404)throw new Error("Tidak bisa membaca repositori ("+r.status+"). Periksa token, nama repositori, dan branch.");
-  const body={message:"Perbarui "+path,branch:cfg.branch,content:b64(JSON.stringify(obj,null,2))};if(sha)body.sha=sha;
-  const p=await fetch(url,{method:"PUT",headers:h,body:JSON.stringify(body)});
-  if(!p.ok)throw new Error("Gagal menyimpan ("+p.status+"). Pastikan token punya izin Contents: Read and write.");
-}
 $("btnSave").onclick=async()=>{
   $("btnSave").disabled=true;$("btnSave").textContent="Menyimpan…";
-  try{
-    updated=new Date().toISOString();beranda.updated=updated;
-    await putFile("data/anggota.json",{updated,anggota:members});
-    await putFile("data/beranda.json",beranda);
-    dirty=false;toast("Tersimpan di GitHub. Halaman publik diperbarui dalam 1–2 menit.");
-  }catch(e){toast(e.message)}
-  $("btnSave").disabled=false;$("btnSave").textContent="Simpan ke GitHub";render();
+  try{await saveAll();dirty=false;toast("Tersimpan di database. Perubahan langsung terlihat oleh semua orang.")}catch(e){toast(e.message)}
+  $("btnSave").disabled=false;$("btnSave").textContent="Simpan ke database";render();
 };
 // Ekspor / impor
 $("btnExp").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify({updated:new Date().toISOString(),anggota:members},null,2)],{type:"application/json"}));a.download="anggota.json";a.click()};
 async function upFoto(o,f){
   toast("Mengunggah foto…");
-  try{
-    const d=await shrink(await rd(f),500),path=`foto/${o.id}-${Date.now().toString(36)}.jpg`;
-    const p=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${path}`,{method:"PUT",headers:{Authorization:"Bearer "+cfg.token,Accept:"application/vnd.github+json"},body:JSON.stringify({message:"Unggah foto anggota",branch:cfg.branch,content:d.split(",")[1]})});
-    if(!p.ok)throw new Error("Gagal mengunggah foto ("+p.status+"). Periksa token dan izin Contents.");
-    localPhoto[o.id]=d;o.foto=path;dirty=true;render();toast("Foto terunggah. Tekan Simpan ke GitHub untuk mencatatnya.");
-  }catch(e){toast(e.message||"Foto tidak bisa dibaca")}
+  try{const d=await shrink(await rd(f),500);o.foto=await upBlob("media",`foto/${o.id}-${Date.now().toString(36)}.jpg`,d);localPhoto[o.id]=d;dirty=true;render();toast("Foto terunggah. Tekan Simpan ke database untuk mencatatnya.")}
+  catch(e){toast(e.message||"Foto tidak bisa dibaca")}
 }
 const ABB={};Object.entries(INFO).forEach(([n,v])=>{const a=v.match(/\(([^)]+)\)/);if(a)ABB[a[1].toLowerCase()]=n});
 const findJ=v=>{const k=String(v).replace(/\s+/g," ").trim().toLowerCase(),j=JENJANG.find(x=>x[1].toLowerCase()===k);return j?j[1]:ABB[k]||null};
@@ -381,7 +418,7 @@ $("file").onchange=async e=>{
     });
     if(!ok.length)return toast(err.length?err[0]:"Tidak ada data anggota di berkas ini");
     if(!confirm(`${ok.length} anggota siap diimpor.`+(err.length?`\n${err.length} baris dilewati:\n`+err.slice(0,8).join("\n"):"")+"\n\nLanjutkan impor?"))return;
-    members.push(...ok);autoNo();dirty=true;render();toast(`${ok.length} anggota diimpor. Tekan Simpan ke GitHub untuk menerbitkan.`);
+    members.push(...ok);autoNo();dirty=true;render();toast(`${ok.length} anggota diimpor. Tekan Simpan ke database untuk menerbitkan.`);
   }catch(x){toast("Berkas tidak bisa dibaca. Gunakan templat Excel dari tombol Unduh templat.")}
 };
 
@@ -409,7 +446,7 @@ function showDetail(id){
   ${rw.length?`<ul>${rw.map(r=>`<li>${tgl(r.tanggal)}: <b>${esc(r.jenjang)}</b>${r.catatan?" ("+esc(r.catatan)+")":""}${adm?` <button class="del" data-act="rDel" data-i="${r.i}">Hapus</button>`:""}</li>`).join("")}</ul>`:'<p class="mut">Belum ada riwayat dicatat.</p>'}
   ${adm?`<div class="bar"><select id="rJ"></select><input type="date" id="rT" aria-label="Tanggal naik tingkat"><input id="rC" placeholder="Catatan (opsional)"><button class="gold" data-act="rAdd">Catat naik tingkat</button></div>`:""}
   <h3>Bukti ijazah</h3>
-  ${ij.length?`<ul>${ij.map((f,i)=>`<li><a href="${esc(f.file)}" target="_blank" rel="noopener">${esc(f.ket||"Ijazah")}</a> <span class="mut">${tgl(f.tgl)}</span>${adm?` <button class="del" data-act="iDel" data-i="${i}">Hapus</button>`:""}</li>`).join("")}</ul>`:'<p class="mut">Belum ada bukti ijazah.</p>'}
+  ${ij.length?`<ul>${ij.map((f,i)=>`<li>${f.priv?(adm?`<button class="lnk" data-act="iOpen" data-p="${esc(f.file)}">${esc(f.ket||"Ijazah")}</button>`:`<span>${esc(f.ket||"Ijazah")}</span> <span class="mut">(hanya admin)</span>`):`<a href="${esc(f.file)}" target="_blank" rel="noopener">${esc(f.ket||"Ijazah")}</a>`} <span class="mut">${tgl(f.tgl)}</span>${adm?` <button class="del" data-act="iDel" data-i="${i}">Hapus</button>`:""}</li>`).join("")}</ul>`:'<p class="mut">Belum ada bukti ijazah.</p>'}
   ${adm?`<div class="bar"><input id="uK" placeholder="Keterangan, mis. Ijazah Kader Muda"><input type="file" id="uF" accept="image/*,.pdf"><button class="gold" data-act="uAdd">Unggah berkas</button></div>`:""}`;
   if(adm){fillJenjang($("rJ"),false);$("rJ").value=m.jenjang;$("rT").value=new Date().toISOString().slice(0,10)}
   if(!$("dDetail").open)$("dDetail").showModal();
@@ -421,13 +458,11 @@ async function uploadIjazah(){
   const f=$("uF").files[0];if(!f)return toast("Pilih berkas ijazah dulu");
   if(f.size>8e6)return toast("Ukuran berkas maksimal 8 MB");
   try{
-    let d=await rd(f),ext=(f.name.split(".").pop()||"bin").toLowerCase();
+    let d=await rd(f),ext=(f.name.split(".").pop()||"bin").toLowerCase().replace(/[^a-z0-9]/g,"");
     if(f.type.startsWith("image/")){d=await shrink(d);ext="jpg"}
-    const path=`ijazah/${cur.id}-${Date.now()}.${ext}`;
-    const p=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${path}`,{method:"PUT",headers:{Authorization:"Bearer "+cfg.token,Accept:"application/vnd.github+json"},body:JSON.stringify({message:"Unggah bukti ijazah",branch:cfg.branch,content:d.split(",")[1]})});
-    if(!p.ok)throw new Error("Gagal mengunggah ("+p.status+"). Periksa token dan izin Contents.");
-    cur.ijazah=[...(cur.ijazah||[]),{file:path,ket:$("uK").value.trim(),tgl:new Date().toISOString().slice(0,10)}];
-    dirty=true;render();showDetail(cur.id);toast("Berkas terunggah. Tekan Simpan ke GitHub untuk mencatatnya.");
+    const path=await upBlob("ijazah",`${cur.id}-${Date.now()}.${ext}`,d);
+    cur.ijazah=[...(cur.ijazah||[]),{file:path,priv:true,ket:$("uK").value.trim(),tgl:new Date().toISOString().slice(0,10)}];
+    dirty=true;render();showDetail(cur.id);toast("Berkas terunggah. Tekan Simpan ke database untuk mencatatnya.");
   }catch(e){toast(e.message||"Berkas tidak bisa dibaca")}
 }
 $("dvBody").addEventListener("click",e=>{
@@ -435,7 +470,7 @@ $("dvBody").addEventListener("click",e=>{
   if(a==="rAdd"){if(!$("rT").value)return toast("Isi tanggal naik tingkat");(cur.riwayat=cur.riwayat||[]).push({jenjang:$("rJ").value,tanggal:$("rT").value,catatan:$("rC").value.trim()});syncJenjang()}
   if(a==="rDel"){cur.riwayat.splice(i,1);syncJenjang()}
   if(a==="iDel"&&confirm("Hapus catatan berkas ini? (berkas di repositori tidak ikut terhapus)")){cur.ijazah.splice(i,1);dirty=true;render();showDetail(cur.id)}
-  if(a==="uAdd")uploadIjazah();
+  if(a==="uAdd")uploadIjazah();if(a==="iOpen")openIjazah(e.target.dataset.p);
 });
 $("dvClose").onclick=()=>$("dDetail").close();
 $("dvKta").onclick=()=>{$("dDetail").close();showKta([cur])};
@@ -465,8 +500,11 @@ function renderBeranda(){
   renderSearch();
 }
 async function loadBeranda(){
-  try{const r=await fetch("data/beranda.json?v="+Date.now());if(!r.ok)throw 0;const d=await r.json();
-    beranda={updated:d.updated||"",profil:{...DEFB.profil,...d.profil},info:d.info||[],galeri:d.galeri||[]}}catch(e){}
+  try{
+    let d;
+    if(SB_ON){d=(await sel("beranda"))[0]||{}}else{const x=await fetch("data/beranda.json?v="+Date.now());if(!x.ok)throw 0;d=await x.json()}
+    beranda={updated:d.updated_at||d.updated||"",profil:{...DEFB.profil,...d.profil},info:d.info||[],galeri:d.galeri||[]};
+  }catch(e){}
   render();
 }
 function route(){
@@ -496,13 +534,11 @@ $("fGal").addEventListener("submit",async()=>{
   for(const f of fs){
     toast(`Mengunggah foto ${n+1} dari ${fs.length}…`);
     try{
-      const d=await shrink(await rd(f),1400),path=`galeri/${Date.now().toString(36)}${n}.jpg`;
-      const p=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${path}`,{method:"PUT",headers:{Authorization:"Bearer "+cfg.token,Accept:"application/vnd.github+json"},body:JSON.stringify({message:"Unggah foto galeri",branch:cfg.branch,content:d.split(",")[1]})});
-      if(!p.ok)throw new Error("Gagal mengunggah foto ("+p.status+"). Periksa token dan izin Contents.");
-      localPhoto[path]=d;beranda.galeri.push({id:"g"+Date.now().toString(36)+n,file:path,ket});n++;dirty=true;render();
+      const d=await shrink(await rd(f),1400),url=await upBlob("media",`galeri/${Date.now().toString(36)}${n}.jpg`,d);
+      localPhoto[url]=d;beranda.galeri.push({id:"g"+Date.now().toString(36)+n,file:url,ket});n++;dirty=true;render();
     }catch(e){toast(e.message||"Foto tidak bisa dibaca");break}
   }
-  if(n)toast(`${n} foto terunggah. Tekan Simpan ke GitHub untuk mencatatnya.`);
+  if(n)toast(`${n} foto terunggah. Tekan Simpan ke database untuk mencatatnya.`);
 });
 fillJenjang($("fj"),true);fillJenjang($("fJenjang"),false);route();loadBeranda();load();
 </script>
