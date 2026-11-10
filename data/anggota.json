@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-10T03:34:23.770Z",
+  "updated": "2026-11-10T03:35:24.077Z",
   "anggota": [
     {
       "id": "amw9hglzi",
@@ -9,8 +9,7 @@
       "bergabung": 1996,
       "status": "Aktif",
       "catatan": "Pembina Tapak Suci Cabang Pesantren Al Husna Sumatera Utara",
-      "noAnggota": "TS-ALH-1991-0001",
-      "foto": "foto/amw9hglzi-mwa4z17n.jpg"
+      "noAnggota": "TS-ALH-1991-0001"
     },
     {
       "id": "amw9hiebw",
@@ -20,7 +19,8 @@
       "bergabung": 2009,
       "status": "Aktif",
       "catatan": "Koordinator Tapak Suci Cabang Pesantren Al Husna 2015-2025",
-      "noAnggota": "TS-ALH-2009-0002"
+      "noAnggota": "TS-ALH-2009-0002",
+      "foto": "foto/amw9hiebw-mwa50953.jpg"
     },
     {
       "id": "amw9hkfzz",
