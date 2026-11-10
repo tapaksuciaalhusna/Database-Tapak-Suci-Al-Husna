@@ -220,11 +220,11 @@ footer{color:var(--mut);font-size:.85rem;text-align:center;padding:0 16px 30px}
 <script>
 const JENJANG=[
  ["Siswa","Siswa Dasar"],["Siswa","Siswa Satu"],["Siswa","Siswa Dua"],["Siswa","Siswa Tiga"],["Siswa","Siswa Empat"],
- ["Kader","Kader Dasar"],["Kader","Kader Muda"],["Kader","Kader Madya"],["Kader","Kader Kepala"],["Kader","Kader Utara"],
+ ["Kader","Kader Dasar"],["Kader","Kader Muda"],["Kader","Kader Madya"],["Kader","Kader Kepala"],["Kader","Kader Utama"],
  ["Pendekar","Pendekar Muda"],["Pendekar","Pendekar Madya"],["Pendekar","Pendekar Kepala"],["Pendekar","Pendekar Utama"],["Pendekar","Pendekar Besar"]
 ];
 // Keterangan tambahan per jenjang (singkatan / sabuk)
-const INFO={"Kader Dasar":"Biru Dasar (K.Da)","Kader Muda":"Biru Melati 1 (K.Ma)","Kader Madya":"Biru Melati 2 (K.Mdy)","Kader Kepala":"Biru Melati 3 (K.Ka)","Kader Utara":"Biru Melati 4 (K.Ua)",
+const INFO={"Kader Dasar":"Biru Dasar (K.Da)","Kader Muda":"Biru Melati 1 (K.Ma)","Kader Madya":"Biru Melati 2 (K.Mdy)","Kader Kepala":"Biru Melati 3 (K.Ka)","Kader Utama":"Biru Melati 4 (K.Ua)",
 "Pendekar Muda":"Hitam Melati 1 (P.Ma)","Pendekar Madya":"Hitam Melati 2 (P.Mdy)","Pendekar Kepala":"Hitam Melati 3 (P.Ka)","Pendekar Utama":"Hitam Melati 4 (P.Ua)","Pendekar Besar":"Hitam Melati 5 (P.Br)"};
 const tingkatOf=j=>(JENJANG.find(x=>x[1]===j)||["Siswa"])[0];
 const $=id=>document.getElementById(id);
@@ -488,7 +488,7 @@ $("pgHome").addEventListener("click",e=>{const o=e.target.dataset.open,v=e.targe
 function renderBeranda(){
   const adm=isAdmin(),b=beranda,p=b.profil,info=[...b.info].sort((a,c)=>(c.tanggal||"")>(a.tanggal||"")?1:-1);
   const dg=(p.kontak||"").replace(/\D/g,""),wa=dg.startsWith("0")?"62"+dg.slice(1):dg;
-  $("hTop").innerHTML=`<section class="banner"><img src="logo.png" alt="Logo Tapak Suci"><div><h2>${esc(p.judul)}</h2><p>Cabang Pesantren Al Husna, Sumatera Utara</p><blockquote>Dengan iman dan akhlak aku kuat, tanpa iman dan akhlak aku lemah.</blockquote></div></section>`;
+  $("hTop").innerHTML=`<section class="banner"><img src="logo.png" alt="Logo Tapak Suci"><div><h2>${esc(p.judul)}</h2><p>Cabang Pesantren Al Husna, Sumatera Utara</p><blockquote>Dengan Iman dan Akhlak Saya Menjadi Kuat, Tanpa Iman dan Akhlak Saya Menjadi Lemah.</blockquote></div></section>`;
   $("hRest").innerHTML=`<section class="card"><h3 class="sh">Tentang kami</h3><p style="white-space:pre-line;margin:0">${esc(p.teks)}</p></section>
   <section class="card kon"><h3 class="sh">Kontak dan alamat</h3>
    <p><b>Alamat</b><br>${esc(p.alamat)}<br><a href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(p.alamat||"")}" target="_blank" rel="noopener">Lihat di Google Maps</a></p>
