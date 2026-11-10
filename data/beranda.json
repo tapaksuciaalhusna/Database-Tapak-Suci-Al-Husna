@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-10T03:24:53.543Z",
+  "updated": "2026-11-10T03:26:50.655Z",
   "profil": {
     "judul": "Tapak Suci Putera Muhammadiyah",
     "teks": "",
@@ -18,6 +18,11 @@
       "id": "gmwa4h46v0",
       "file": "galeri/mwa4h1sg0.jpg",
       "ket": "Aplikasi Digital Scoring Pencak Silat yang dibangun oleh Kader Tapak Suci Cabang Pesantren Al Husna."
+    },
+    {
+      "id": "gmwa4p3uv0",
+      "file": "galeri/mwa4p1pu0.jpg",
+      "ket": "Digital Scoring Al Husna Pro di Kejuaraan Smart Group Cup 1 2026, Padang Lawas Utara"
     }
   ]
 }
