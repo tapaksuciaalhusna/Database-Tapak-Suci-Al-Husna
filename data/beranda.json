@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-10T03:19:18.128Z",
+  "updated": "2026-11-10T03:20:27.475Z",
   "profil": {
     "judul": "Tapak Suci Putera Muhammadiyah",
     "teks": "",
@@ -13,6 +13,11 @@
       "id": "gmwa4fk0b0",
       "file": "galeri/mwa4fht20.jpg",
       "ket": "Latihan Mingguan Rutin Tapak Suci Cabang Pesantren Al Husna"
+    },
+    {
+      "id": "gmwa4h46v0",
+      "file": "galeri/mwa4h1sg0.jpg",
+      "ket": "Aplikasi Digital Scoring Pencak Silat yang dibangun oleh Kader Tapak Suci Cabang Pesantren Al Husna."
     }
   ]
 }
