@@ -72,44 +72,96 @@ footer{color:var(--mut);font-size:.85rem;text-align:center;padding:0 16px 30px}
 .kb{padding:2mm 3mm;flex:1;line-height:1.3;display:flex;justify-content:space-between;gap:2mm}.kn{font-weight:700;font-size:11pt}
 .kf{width:16mm;height:20mm;object-fit:cover;border-radius:1mm;border:.3mm solid #1747b8}
 .kc{padding:0 3mm 2mm;text-align:center}.kc svg{width:100%;height:9mm;display:block}.kno{font:7.5pt monospace;letter-spacing:.5px}
+[hidden]{display:none!important}
+.app{display:flex;min-height:100vh}
+.side{width:250px;flex:none;position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column;gap:6px;padding:18px 14px;color:#fff;background:linear-gradient(190deg,#091a55,#1747b8 58%,#6d3be0)}
+.brand{display:flex;gap:10px;align-items:center;color:#fff;text-decoration:none;margin-bottom:12px}
+.brand img{width:46px}.brand b{display:block;font:700 1.15rem Georgia,serif}.brand span{font-size:.82rem;opacity:.85}
+.side nav{display:flex;flex-direction:column;gap:4px}
+.side nav a{color:#fff;text-decoration:none;padding:9px 12px;border-radius:10px}
+.side nav a.sub{margin-left:16px;padding:6px 12px;font-size:.92rem;opacity:.9}
+.side nav a:hover{background:rgba(255,255,255,.12)}
+.side nav a.on{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1b1500;font-weight:700;opacity:1}
+.grp{margin:14px 0 2px;font-size:.82rem;opacity:.8}
+#adminTools{display:flex;flex-direction:column;gap:6px}
+.side button,.side a.btn{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.22);text-align:left;width:100%}
+.side button.pri{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1b1500;border-color:transparent;font-weight:700}
+.sidefoot{margin-top:auto;display:flex;flex-direction:column;gap:6px;padding-top:12px}
+.content{flex:1;min-width:0}
+.top{display:flex;align-items:center;gap:12px;padding:16px 24px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,rgba(37,99,235,.10),rgba(124,58,237,.10))}
+.top h1{font-size:1.35rem}
+.content main{max-width:1100px;margin:0 auto;padding:22px 24px 40px}
+#burger{display:none}
+@media(max-width:860px){.side{position:fixed;left:0;top:0;z-index:60;transform:translateX(-100%);transition:transform .2s}.side.open{transform:none}#burger{display:inline-block}.top{padding:12px 16px}.content main{padding:16px}#scrim{position:fixed;inset:0;background:rgba(8,12,30,.5);z-index:55}}
+.banner{display:flex;gap:22px;align-items:center;padding:28px;border-radius:20px;color:#fff;background:linear-gradient(120deg,#091a55,#1747b8 55%,#7c3aed);box-shadow:0 18px 40px -20px #2d4fd6;margin-bottom:22px}
+.banner img{width:120px;flex:none;filter:drop-shadow(0 6px 14px rgba(0,0,0,.35))}
+.banner h2{font-size:1.8rem;line-height:1.2;margin:0 0 4px}.banner p{margin:0;opacity:.9}
+.banner blockquote{margin:14px 0 0;padding-left:12px;border-left:4px solid #fbbf24;font-style:italic}
+@media(max-width:560px){.banner{flex-direction:column;text-align:center;padding:20px}.banner blockquote{border-left:0;padding:0}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:22px}
+.sh{font:700 1.15rem Georgia,serif;margin:0 0 10px}
+.infos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:22px}
+.info{background:var(--card);border:1px solid var(--line);border-left:5px solid #7c3aed;border-radius:14px;padding:14px 16px}
+.info b{display:block}.info p{margin:6px 0 0;white-space:pre-line}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.gal figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.gal img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;cursor:zoom-in}
+.gal figcaption{padding:8px 12px;font-size:.9rem}
+#lbImg{max-width:100%;max-height:70vh;display:block;margin:0 auto;border-radius:10px}
+#dLight{width:min(820px,96vw)}
 #sheet{display:none}
 @media print{@page{size:A4;margin:10mm}body{background:#fff}body>*{display:none!important}body>#sheet{display:grid!important;grid-template-columns:repeat(2,85.6mm);gap:6mm}*{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
 </style>
 </head>
 <body>
-<header class="hero"><div class="wrap">
-  <img src="logo.png" alt="Logo Tapak Suci">
-  <div><h1>Database Anggota Tapak Suci</h1><p>Cabang Pesantren Al Husna, Sumatera Utara</p></div>
-  <div class="total"><b id="tot">0</b><span>anggota</span></div>
-</div></header>
-
-<main class="wrap">
-  <div id="dirty" class="dirty" hidden>Ada perubahan yang belum disimpan ke GitHub. Tekan “Simpan ke GitHub” agar terlihat oleh semua orang.</div>
-  <div class="bar">
-    <button id="btnAdmin">Masuk admin</button>
-    <span class="sp"></span>
-    <span id="adminTools" hidden style="display:none;gap:8px;flex-wrap:wrap">
-      <button class="gold" id="btnAdd">Tambah anggota</button>
-      <button class="pri" id="btnSave">Simpan ke GitHub</button>
-      <button id="btnImp">Impor Excel</button>
-      <a class="btn" href="templat-anggota.xlsx" download>Unduh templat Excel</a>
-      <button id="btnKtaAll">Cetak banyak KTA</button>
-      <button id="btnExp">Unduh JSON</button>
-      <input type="file" id="file" accept=".xlsx,.xls,.csv" hidden>
-    </span>
+<div class="app">
+<aside class="side" id="side" aria-label="Menu utama">
+  <a class="brand" href="#beranda"><img src="logo.png" alt=""><div><b>Tapak Suci</b><span>Pesantren Al Husna</span></div></a>
+  <nav>
+    <a href="#beranda" data-nav="beranda">Beranda</a>
+    <a href="#database" data-nav="database">Database anggota</a>
+    <a class="sub" href="#database/Siswa" data-nav="database/Siswa">Siswa</a>
+    <a class="sub" href="#database/Kader" data-nav="database/Kader">Kader</a>
+    <a class="sub" href="#database/Pendekar" data-nav="database/Pendekar">Pendekar</a>
+  </nav>
+  <div id="adminTools" hidden style="display:none">
+    <p class="grp">Menu admin</p>
+    <button id="btnAdd">Tambah anggota</button>
+    <button id="btnImp">Impor Excel</button>
+    <a class="btn" href="templat-anggota.xlsx" download>Unduh templat Excel</a>
+    <button id="btnKtaAll">Cetak banyak KTA</button>
+    <button id="btnExp">Unduh JSON</button>
+    <button id="btnInfo">Tambah informasi</button>
+    <button id="btnGal">Tambah foto galeri</button>
+    <button id="btnProfil">Ubah profil</button>
+    <input type="file" id="file" accept=".xlsx,.xls,.csv" hidden>
   </div>
-  <section id="home"><p class="mut">Pilih folder untuk melihat daftar anggotanya.</p><div class="folders" id="folders"></div></section>
-  <section id="fview" hidden>
-    <div class="bar"><button id="back">Kembali ke folder</button><h2 id="ftitle"></h2></div>
-    <div class="bar"><input type="search" id="q" placeholder="Cari nama anggota" aria-label="Cari nama anggota"><select id="fj" aria-label="Filter jenjang"></select></div>
-    <div class="tw"><table>
-      <thead><tr><th>No</th><th>Anggota</th><th>L/P</th><th>Jenjang</th><th>Bergabung</th><th>Status</th><th class="adm" hidden></th></tr></thead>
-      <tbody id="tb"></tbody>
-    </table><div id="empty" class="empty" hidden>Belum ada anggota yang cocok. Ubah kata kunci atau filter.</div></div>
-  </section>
-  <p class="mut" id="upd"></p>
-</main>
-<footer>Data ditampilkan dari berkas data/anggota.json di repositori GitHub.</footer>
+  <div class="sidefoot"><button class="pri" id="btnSave" hidden>Simpan ke GitHub</button><button id="btnAdmin">Masuk admin</button></div>
+</aside>
+<div class="content">
+  <header class="top"><button id="burger" aria-label="Buka menu">Menu</button><h1 id="pageTitle">Beranda</h1></header>
+  <main>
+    <div id="dirty" class="dirty" hidden>Ada perubahan yang belum disimpan ke GitHub. Tekan “Simpan ke GitHub” di menu agar terlihat oleh semua orang.</div>
+    <div id="pgHome"></div>
+    <div id="pgDb" hidden>
+      <section id="home">
+        <div class="bar"><button data-home>Kembali ke Beranda</button></div>
+        <p class="mut">Pilih folder untuk melihat daftar anggotanya.</p><div class="folders" id="folders"></div>
+      </section>
+      <section id="fview" hidden>
+        <div class="bar"><button id="back">Kembali ke folder</button><button data-home>Beranda</button><h2 id="ftitle"></h2></div>
+        <div class="bar"><input type="search" id="q" placeholder="Cari nama anggota" aria-label="Cari nama anggota"><select id="fj" aria-label="Filter jenjang"></select></div>
+        <div class="tw"><table>
+          <thead><tr><th>No</th><th>Anggota</th><th>L/P</th><th>Jenjang</th><th>Bergabung</th><th>Status</th><th class="adm" hidden></th></tr></thead>
+          <tbody id="tb"></tbody>
+        </table><div id="empty" class="empty" hidden>Belum ada anggota yang cocok. Ubah kata kunci atau filter.</div></div>
+      </section>
+      <p class="mut" id="upd"></p>
+    </div>
+  </main>
+  <footer>Tapak Suci Putera Muhammadiyah, Cabang Pesantren Al Husna, Sumatera Utara</footer>
+</div></div>
+<div id="scrim" hidden></div>
 
 <dialog id="dForm"><form method="dialog" id="fForm">
   <h2 id="fTitle">Tambah anggota</h2>
@@ -135,6 +187,20 @@ footer{color:var(--mut);font-size:.85rem;text-align:center;padding:0 16px 30px}
 
 <dialog id="dDetail"><div id="dvBody"></div><div class="row"><button type="button" class="gold" id="dvKta">Cetak KTA</button><button type="button" id="dvClose">Tutup</button></div></dialog>
 <dialog id="dKta"><h2>Pratinjau KTA</h2><div id="ktaPrev"></div><div class="row"><button type="button" id="kClose">Tutup</button><button type="button" class="pri" id="kPrint">Cetak</button></div></dialog>
+<dialog id="dInfo"><form method="dialog" id="fInfo"><h2>Tambah informasi</h2>
+  <label for="iJ">Judul</label><input id="iJ" required>
+  <label for="iT">Isi informasi</label><textarea id="iT" rows="4" required></textarea>
+  <label for="iD">Tanggal</label><input id="iD" type="date">
+  <div class="row"><button type="button" data-close>Batal</button><button class="pri" type="submit">Simpan informasi</button></div></form></dialog>
+<dialog id="dGal"><form method="dialog" id="fGal"><h2>Tambah foto galeri</h2>
+  <label for="gF">Foto</label><input id="gF" type="file" accept="image/*" required>
+  <label for="gK">Keterangan foto</label><input id="gK" placeholder="Mis. Ujian kenaikan tingkat 2026">
+  <div class="row"><button type="button" data-close>Batal</button><button class="pri" type="submit">Unggah foto</button></div></form></dialog>
+<dialog id="dProfil"><form method="dialog" id="fProfil"><h2>Ubah profil</h2>
+  <label for="pJ">Judul</label><input id="pJ" required>
+  <label for="pT">Tentang kami</label><textarea id="pT" rows="8"></textarea>
+  <div class="row"><button type="button" data-close>Batal</button><button class="pri" type="submit">Simpan profil</button></div></form></dialog>
+<dialog id="dLight"><img id="lbImg" alt=""><p id="lbCap" class="mut"></p><div class="row"><button type="button" data-close>Tutup</button></div></dialog>
 <div id="sheet"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -173,12 +239,17 @@ async function load(){
 function fillJenjang(sel,all){
   sel.innerHTML=(all?'<option value="">Semua jenjang</option>':"")+JENJANG.map(j=>`<option value="${j[1]}">${j[1]}${INFO[j[1]]?" – "+INFO[j[1]]:""}</option>`).join("");
 }
-let folder=null;const localPhoto={};
+let folder=null,view="beranda";const localPhoto={};
+const DEFB={updated:"",profil:{judul:"Tapak Suci Putera Muhammadiyah",teks:""},info:[],galeri:[]};let beranda=JSON.parse(JSON.stringify(DEFB));
 const avatar=m=>{const s=localPhoto[m.id]||m.foto;return s?`<img class="av" src="${esc(s)}" alt="" loading="lazy">`:`<span class="av">${esc((m.nama||"?")[0].toUpperCase())}</span>`};
 const TING=[["Siswa","g-siswa"],["Kader","g-kader"],["Pendekar","g-pendekar"]];
 function openFolder(t){folder=t;$("q").value="";fillJenjang($("fj"),1);[...$("fj").options].forEach(o=>{if(o.value&&tingkatOf(o.value)!==t)o.remove()});$("fj").value="";render();window.scrollTo(0,0)}
 function render(){
-  const adm=isAdmin();$("tot").textContent=members.length;
+  const adm=isAdmin(),key=view==="beranda"?"beranda":(folder?"database/"+folder:"database");
+  $("pgHome").hidden=view!=="beranda";$("pgDb").hidden=view!=="database";
+  document.querySelectorAll("[data-nav]").forEach(a=>a.classList.toggle("on",a.dataset.nav===key));
+  $("pageTitle").textContent=view==="beranda"?"Beranda":"Database anggota";
+  if(view==="beranda")renderBeranda();
   $("home").hidden=!!folder;$("fview").hidden=!folder;
   if(!folder){
     shown=members;
@@ -203,11 +274,12 @@ function render(){
   $("upd").textContent=updated?"Data terakhir diperbarui: "+new Date(updated).toLocaleString("id-ID"):"";
   $("btnAdmin").textContent=adm?"Admin aktif ("+cfg.owner+")":"Masuk admin";
   $("adminTools").style.display=adm?"flex":"none";$("adminTools").hidden=!adm;
-  $("dirty").hidden=!(adm&&dirty);
+  $("dirty").hidden=!(adm&&dirty);$("btnSave").hidden=!adm;
 }
 ["q","fj"].forEach(i=>$(i).addEventListener("input",render));
-$("folders").addEventListener("click",e=>{const b=e.target.closest("[data-f]");if(b)openFolder(b.dataset.f)});
-$("back").onclick=()=>{folder=null;render()};
+$("folders").addEventListener("click",e=>{const b=e.target.closest("[data-f]");if(b)location.hash="database/"+b.dataset.f});
+$("back").onclick=()=>{location.hash="database"};
+document.addEventListener("click",e=>{if(e.target.closest("[data-home]"))location.hash="beranda";const c=e.target.closest("[data-close]");if(c)c.closest("dialog").close()});
 $("fFoto").onchange=e=>{const f=e.target.files[0],v=$("fPrev");v.hidden=!f;if(f)v.src=URL.createObjectURL(f)};
 
 // Form anggota
@@ -244,18 +316,20 @@ $("fAdmin").addEventListener("submit",()=>{
 
 // Simpan ke GitHub
 const b64=s=>btoa(unescape(encodeURIComponent(s)));
+async function putFile(path,obj){
+  const url=`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${path}`,h={Authorization:"Bearer "+cfg.token,Accept:"application/vnd.github+json"};
+  let sha;const r=await fetch(url+"?ref="+encodeURIComponent(cfg.branch),{headers:h});
+  if(r.ok)sha=(await r.json()).sha;else if(r.status!==404)throw new Error("Tidak bisa membaca repositori ("+r.status+"). Periksa token, nama repositori, dan branch.");
+  const body={message:"Perbarui "+path,branch:cfg.branch,content:b64(JSON.stringify(obj,null,2))};if(sha)body.sha=sha;
+  const p=await fetch(url,{method:"PUT",headers:h,body:JSON.stringify(body)});
+  if(!p.ok)throw new Error("Gagal menyimpan ("+p.status+"). Pastikan token punya izin Contents: Read and write.");
+}
 $("btnSave").onclick=async()=>{
-  const url=`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/data/anggota.json`;
-  const h={Authorization:"Bearer "+cfg.token,Accept:"application/vnd.github+json"};
   $("btnSave").disabled=true;$("btnSave").textContent="Menyimpan…";
   try{
-    let sha;const r=await fetch(url+"?ref="+encodeURIComponent(cfg.branch),{headers:h});
-    if(r.ok)sha=(await r.json()).sha;else if(r.status!==404)throw new Error("Tidak bisa membaca repositori ("+r.status+"). Periksa token, nama repositori, dan branch.");
-    updated=new Date().toISOString();
-    const body={message:"Perbarui data anggota",branch:cfg.branch,content:b64(JSON.stringify({updated,anggota:members},null,2))};
-    if(sha)body.sha=sha;
-    const p=await fetch(url,{method:"PUT",headers:h,body:JSON.stringify(body)});
-    if(!p.ok)throw new Error("Gagal menyimpan ("+p.status+"). Pastikan token punya izin Contents: Read and write.");
+    updated=new Date().toISOString();beranda.updated=updated;
+    await putFile("data/anggota.json",{updated,anggota:members});
+    await putFile("data/beranda.json",beranda);
     dirty=false;toast("Tersimpan di GitHub. Halaman publik diperbarui dalam 1–2 menit.");
   }catch(e){toast(e.message)}
   $("btnSave").disabled=false;$("btnSave").textContent="Simpan ke GitHub";render();
@@ -355,7 +429,52 @@ $("dvKta").onclick=()=>{$("dDetail").close();showKta([cur])};
 $("kClose").onclick=()=>$("dKta").close();
 $("kPrint").onclick=()=>window.print();
 $("btnKtaAll").onclick=()=>showKta(shown);
-fillJenjang($("fj"),true);fillJenjang($("fJenjang"),false);load();
+function renderBeranda(){
+  const adm=isAdmin(),b=beranda,info=[...b.info].sort((a,c)=>(c.tanggal||"")>(a.tanggal||"")?1:-1);
+  $("pgHome").innerHTML=`<section class="banner"><img src="logo.png" alt="Logo Tapak Suci"><div><h2>${esc(b.profil.judul)}</h2><p>Cabang Pesantren Al Husna, Sumatera Utara</p><blockquote>Dengan iman dan akhlak aku kuat, tanpa iman dan akhlak aku lemah.</blockquote></div></section>
+  <section class="card"><h3 class="sh">Tentang kami</h3><p style="white-space:pre-line;margin:0">${esc(b.profil.teks)}</p></section>
+  <h3 class="sh">Informasi terbaru</h3>
+  ${info.length?`<div class="infos">${info.map(i=>`<article class="info"><b>${esc(i.judul)}</b><span class="mut">${tgl(i.tanggal)}</span><p>${esc(i.isi)}</p>${adm?`<button class="del" data-idel="${esc(i.id)}">Hapus</button>`:""}</article>`).join("")}</div>`:'<p class="mut">Belum ada informasi.</p>'}
+  <h3 class="sh">Galeri kegiatan</h3>
+  ${b.galeri.length?`<div class="gal">${b.galeri.map(g=>`<figure><img src="${esc(localPhoto[g.file]||g.file)}" alt="${esc(g.ket||"Foto kegiatan")}" data-lb="${esc(g.id)}" loading="lazy"><figcaption>${esc(g.ket)}${adm?` <button class="del" data-gdel="${esc(g.id)}">Hapus</button>`:""}</figcaption></figure>`).join("")}</div>`:'<p class="mut">Belum ada foto kegiatan.'+(adm?" Gunakan menu Tambah foto galeri.":"")+"</p>"}`;
+}
+async function loadBeranda(){
+  try{const r=await fetch("data/beranda.json?v="+Date.now());if(!r.ok)throw 0;const d=await r.json();
+    beranda={updated:d.updated||"",profil:{...DEFB.profil,...d.profil},info:d.info||[],galeri:d.galeri||[]}}catch(e){}
+  render();
+}
+function route(){
+  const h=location.hash.replace(/^#/,""),t=h.split("/")[1];
+  if(h.startsWith("database")){view="database";folder=TING.some(x=>x[0]===t)?t:null;if(folder){openFolder(folder);closeSide();return}}
+  else{view="beranda";folder=null}
+  render();closeSide();window.scrollTo(0,0);
+}
+const closeSide=()=>{$("side").classList.remove("open");$("scrim").hidden=true};
+$("burger").onclick=()=>{$("side").classList.add("open");$("scrim").hidden=false};
+$("scrim").onclick=closeSide;
+$("side").addEventListener("click",e=>{if(e.target.closest("a,button"))closeSide()});
+window.addEventListener("hashchange",route);
+$("pgHome").addEventListener("click",e=>{
+  const t=e.target.dataset,x=t.lb&&beranda.galeri.find(y=>y.id===t.lb);
+  if(t.idel&&confirm("Hapus informasi ini?")){beranda.info=beranda.info.filter(y=>y.id!==t.idel);dirty=true;render()}
+  if(t.gdel&&confirm("Hapus foto ini dari galeri? (berkas di repositori tidak ikut terhapus)")){beranda.galeri=beranda.galeri.filter(y=>y.id!==t.gdel);dirty=true;render()}
+  if(x){$("lbImg").src=localPhoto[x.file]||x.file;$("lbCap").textContent=x.ket||"";$("dLight").showModal()}
+});
+$("btnInfo").onclick=()=>{$("fInfo").reset();$("iD").value=new Date().toISOString().slice(0,10);$("dInfo").showModal()};
+$("fInfo").addEventListener("submit",()=>{beranda.info.push({id:"i"+Date.now().toString(36),judul:$("iJ").value.trim(),isi:$("iT").value.trim(),tanggal:$("iD").value||new Date().toISOString().slice(0,10)});dirty=true;render()});
+$("btnProfil").onclick=()=>{$("pJ").value=beranda.profil.judul;$("pT").value=beranda.profil.teks;$("dProfil").showModal()};
+$("fProfil").addEventListener("submit",()=>{beranda.profil={judul:$("pJ").value.trim(),teks:$("pT").value.trim()};dirty=true;render()});
+$("btnGal").onclick=()=>{$("fGal").reset();$("dGal").showModal()};
+$("fGal").addEventListener("submit",async()=>{
+  const f=$("gF").files[0],ket=$("gK").value.trim();toast("Mengunggah foto…");
+  try{
+    const d=await shrink(await rd(f),1400),path=`galeri/${Date.now().toString(36)}.jpg`;
+    const p=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${path}`,{method:"PUT",headers:{Authorization:"Bearer "+cfg.token,Accept:"application/vnd.github+json"},body:JSON.stringify({message:"Unggah foto galeri",branch:cfg.branch,content:d.split(",")[1]})});
+    if(!p.ok)throw new Error("Gagal mengunggah foto ("+p.status+"). Periksa token dan izin Contents.");
+    localPhoto[path]=d;beranda.galeri.push({id:"g"+Date.now().toString(36),file:path,ket});dirty=true;render();toast("Foto terunggah. Tekan Simpan ke GitHub untuk mencatatnya.");
+  }catch(e){toast(e.message||"Foto tidak bisa dibaca")}
+});
+fillJenjang($("fj"),true);fillJenjang($("fJenjang"),false);route();loadBeranda();load();
 </script>
 </body>
 </html>
