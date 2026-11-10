@@ -2,10 +2,18 @@
   "updated": "2026-11-10T00:00:00.000Z",
   "profil": {
     "judul": "Tapak Suci Putera Muhammadiyah",
-    "teks": "Tapak Suci Putera Muhammadiyah adalah perguruan pencak silat di bawah naungan Muhammadiyah yang didirikan pada 31 Juli 1963 di Yogyakarta.\n\nCabang Pesantren Al Husna, Sumatera Utara, membina para siswa, kader, dan pendekar melalui latihan bela diri dan pembinaan akhlak.\n\n(Teks ini contoh. Admin dapat mengubahnya lewat menu Ubah profil.)"
+    "teks": "Tapak Suci Putera Muhammadiyah adalah perguruan pencak silat di bawah naungan Muhammadiyah yang didirikan pada 31 Juli 1963 di Yogyakarta.\n\nCabang Pesantren Al Husna, Sumatera Utara, membina para siswa, kader, dan pendekar melalui latihan bela diri dan pembinaan akhlak.\n\n(Teks ini contoh. Admin dapat mengubahnya lewat menu Ubah profil.)",
+    "alamat": "Pesantren Al Husna, Jl. Pelajar Pasar III, Dusun X Marindal I, Kec. Patumbak, Kabupaten Deli Serdang, Sumatera Utara",
+    "kontak": "",
+    "kontakNama": ""
   },
   "info": [
-    { "id": "i1", "judul": "Selamat datang", "isi": "Halaman ini berisi informasi dan foto kegiatan Tapak Suci Cabang Pesantren Al Husna. Data anggota ada di menu Database anggota.", "tanggal": "2026-11-10" }
+    {
+      "id": "i1",
+      "judul": "Selamat datang",
+      "isi": "Halaman ini berisi informasi dan foto kegiatan Tapak Suci Cabang Pesantren Al Husna. Data anggota ada di menu Database anggota.",
+      "tanggal": "2026-11-10"
+    }
   ],
   "galeri": []
 }

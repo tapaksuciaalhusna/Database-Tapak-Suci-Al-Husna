@@ -109,6 +109,12 @@ footer{color:var(--mut);font-size:.85rem;text-align:center;padding:0 16px 30px}
 .gal figcaption{padding:8px 12px;font-size:.9rem}
 #lbImg{max-width:100%;max-height:70vh;display:block;margin:0 auto;border-radius:10px}
 #dLight{width:min(820px,96vw)}
+.srch label{margin:0 0 6px;font-weight:600;color:var(--ink);font-size:1rem}
+.srch input{width:100%;font-size:1.05rem;padding:12px 14px}
+.res{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+.res button{display:flex;gap:10px;align-items:center;text-align:left;width:100%}
+.sechead{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:10px}.sechead .sh{margin:0}
+.kon p{margin:0 0 12px}.kon p:last-child{margin:0}.kon a{color:var(--blue);margin-right:14px}
 #sheet{display:none}
 @media print{@page{size:A4;margin:10mm}body{background:#fff}body>*{display:none!important}body>#sheet{display:grid!important;grid-template-columns:repeat(2,85.6mm);gap:6mm}*{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
 </style>
@@ -142,7 +148,11 @@ footer{color:var(--mut);font-size:.85rem;text-align:center;padding:0 16px 30px}
   <header class="top"><button id="burger" aria-label="Buka menu">Menu</button><h1 id="pageTitle">Beranda</h1></header>
   <main>
     <div id="dirty" class="dirty" hidden>Ada perubahan yang belum disimpan ke GitHub. Tekan “Simpan ke GitHub” di menu agar terlihat oleh semua orang.</div>
-    <div id="pgHome"></div>
+    <div id="pgHome">
+      <div id="hTop"></div>
+      <section class="card srch"><label for="hq">Cari anggota</label><input type="search" id="hq" placeholder="Ketik nama atau nomor anggota (minimal 2 huruf)" autocomplete="off"><div id="sres" aria-live="polite"></div></section>
+      <div id="hRest"></div>
+    </div>
     <div id="pgDb" hidden>
       <section id="home">
         <div class="bar"><button data-home>Kembali ke Beranda</button></div>
@@ -193,12 +203,15 @@ footer{color:var(--mut);font-size:.85rem;text-align:center;padding:0 16px 30px}
   <label for="iD">Tanggal</label><input id="iD" type="date">
   <div class="row"><button type="button" data-close>Batal</button><button class="pri" type="submit">Simpan informasi</button></div></form></dialog>
 <dialog id="dGal"><form method="dialog" id="fGal"><h2>Tambah foto galeri</h2>
-  <label for="gF">Foto</label><input id="gF" type="file" accept="image/*" required>
+  <label for="gF">Foto</label><input id="gF" type="file" accept="image/*" multiple required>
   <label for="gK">Keterangan foto</label><input id="gK" placeholder="Mis. Ujian kenaikan tingkat 2026">
   <div class="row"><button type="button" data-close>Batal</button><button class="pri" type="submit">Unggah foto</button></div></form></dialog>
 <dialog id="dProfil"><form method="dialog" id="fProfil"><h2>Ubah profil</h2>
   <label for="pJ">Judul</label><input id="pJ" required>
-  <label for="pT">Tentang kami</label><textarea id="pT" rows="8"></textarea>
+  <label for="pT">Tentang kami</label><textarea id="pT" rows="6"></textarea>
+  <label for="pA">Alamat</label><textarea id="pA" rows="2"></textarea>
+  <label for="pK">Nomor kontak (mis. 0812xxxxxxxx)</label><input id="pK" type="tel">
+  <label for="pN">Nama kontak (opsional)</label><input id="pN">
   <div class="row"><button type="button" data-close>Batal</button><button class="pri" type="submit">Simpan profil</button></div></form></dialog>
 <dialog id="dLight"><img id="lbImg" alt=""><p id="lbCap" class="mut"></p><div class="row"><button type="button" data-close>Tutup</button></div></dialog>
 <div id="sheet"></div>
@@ -240,7 +253,7 @@ function fillJenjang(sel,all){
   sel.innerHTML=(all?'<option value="">Semua jenjang</option>':"")+JENJANG.map(j=>`<option value="${j[1]}">${j[1]}${INFO[j[1]]?" – "+INFO[j[1]]:""}</option>`).join("");
 }
 let folder=null,view="beranda";const localPhoto={};
-const DEFB={updated:"",profil:{judul:"Tapak Suci Putera Muhammadiyah",teks:""},info:[],galeri:[]};let beranda=JSON.parse(JSON.stringify(DEFB));
+const DEFB={updated:"",profil:{judul:"Tapak Suci Putera Muhammadiyah",teks:"",alamat:"Pesantren Al Husna, Jl. Pelajar Pasar III, Dusun X Marindal I, Kec. Patumbak, Kabupaten Deli Serdang, Sumatera Utara",kontak:"",kontakNama:""},info:[],galeri:[]};let beranda=JSON.parse(JSON.stringify(DEFB));
 const avatar=m=>{const s=localPhoto[m.id]||m.foto;return s?`<img class="av" src="${esc(s)}" alt="" loading="lazy">`:`<span class="av">${esc((m.nama||"?")[0].toUpperCase())}</span>`};
 const TING=[["Siswa","g-siswa"],["Kader","g-kader"],["Pendekar","g-pendekar"]];
 function openFolder(t){folder=t;$("q").value="";fillJenjang($("fj"),1);[...$("fj").options].forEach(o=>{if(o.value&&tingkatOf(o.value)!==t)o.remove()});$("fj").value="";render();window.scrollTo(0,0)}
@@ -429,14 +442,27 @@ $("dvKta").onclick=()=>{$("dDetail").close();showKta([cur])};
 $("kClose").onclick=()=>$("dKta").close();
 $("kPrint").onclick=()=>window.print();
 $("btnKtaAll").onclick=()=>showKta(shown);
+function renderSearch(){
+  const q=($("hq").value||"").trim().toLowerCase(),box=$("sres");
+  if(q.length<2){box.innerHTML="";return}
+  const r=members.filter(m=>m.nama.toLowerCase().includes(q)||(m.noAnggota||"").toLowerCase().includes(q)).slice(0,8);
+  box.innerHTML=r.length?`<div class="res">${r.map(m=>`<button data-v="${esc(m.id)}">${avatar(m)}<span><b>${esc(m.nama)}</b><br><span class="mut">${esc(m.jenjang)} – ${esc(m.noAnggota||"")}</span></span></button>`).join("")}</div>`:'<p class="mut">Tidak ada anggota yang cocok.</p>';
+}
+$("hq").addEventListener("input",renderSearch);
+$("pgHome").addEventListener("click",e=>{const o=e.target.dataset.open,v=e.target.closest("[data-v]");if(o)$(o).click();if(v)showDetail(v.dataset.v)});
 function renderBeranda(){
-  const adm=isAdmin(),b=beranda,info=[...b.info].sort((a,c)=>(c.tanggal||"")>(a.tanggal||"")?1:-1);
-  $("pgHome").innerHTML=`<section class="banner"><img src="logo.png" alt="Logo Tapak Suci"><div><h2>${esc(b.profil.judul)}</h2><p>Cabang Pesantren Al Husna, Sumatera Utara</p><blockquote>Dengan iman dan akhlak aku kuat, tanpa iman dan akhlak aku lemah.</blockquote></div></section>
-  <section class="card"><h3 class="sh">Tentang kami</h3><p style="white-space:pre-line;margin:0">${esc(b.profil.teks)}</p></section>
-  <h3 class="sh">Informasi terbaru</h3>
+  const adm=isAdmin(),b=beranda,p=b.profil,info=[...b.info].sort((a,c)=>(c.tanggal||"")>(a.tanggal||"")?1:-1);
+  const dg=(p.kontak||"").replace(/\D/g,""),wa=dg.startsWith("0")?"62"+dg.slice(1):dg;
+  $("hTop").innerHTML=`<section class="banner"><img src="logo.png" alt="Logo Tapak Suci"><div><h2>${esc(p.judul)}</h2><p>Cabang Pesantren Al Husna, Sumatera Utara</p><blockquote>Dengan iman dan akhlak aku kuat, tanpa iman dan akhlak aku lemah.</blockquote></div></section>`;
+  $("hRest").innerHTML=`<section class="card"><h3 class="sh">Tentang kami</h3><p style="white-space:pre-line;margin:0">${esc(p.teks)}</p></section>
+  <section class="card kon"><h3 class="sh">Kontak dan alamat</h3>
+   <p><b>Alamat</b><br>${esc(p.alamat)}<br><a href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(p.alamat||"")}" target="_blank" rel="noopener">Lihat di Google Maps</a></p>
+   <p><b>Nomor kontak</b>${p.kontakNama?" ("+esc(p.kontakNama)+")":""}<br>${dg?`<a href="tel:${esc(p.kontak.replace(/[^\d+]/g,""))}">${esc(p.kontak)}</a><a href="https://wa.me/${wa}" target="_blank" rel="noopener">Chat WhatsApp</a>`:`<span class="mut">${adm?"Belum diisi. Isi lewat menu Ubah profil.":"Belum tersedia."}</span>`}</p></section>
+  <div class="sechead"><h3 class="sh">Informasi terbaru</h3>${adm?'<button class="gold" data-open="btnInfo">Tambah informasi</button>':""}</div>
   ${info.length?`<div class="infos">${info.map(i=>`<article class="info"><b>${esc(i.judul)}</b><span class="mut">${tgl(i.tanggal)}</span><p>${esc(i.isi)}</p>${adm?`<button class="del" data-idel="${esc(i.id)}">Hapus</button>`:""}</article>`).join("")}</div>`:'<p class="mut">Belum ada informasi.</p>'}
-  <h3 class="sh">Galeri kegiatan</h3>
-  ${b.galeri.length?`<div class="gal">${b.galeri.map(g=>`<figure><img src="${esc(localPhoto[g.file]||g.file)}" alt="${esc(g.ket||"Foto kegiatan")}" data-lb="${esc(g.id)}" loading="lazy"><figcaption>${esc(g.ket)}${adm?` <button class="del" data-gdel="${esc(g.id)}">Hapus</button>`:""}</figcaption></figure>`).join("")}</div>`:'<p class="mut">Belum ada foto kegiatan.'+(adm?" Gunakan menu Tambah foto galeri.":"")+"</p>"}`;
+  <div class="sechead"><h3 class="sh">Galeri kegiatan</h3>${adm?'<button class="gold" data-open="btnGal">Tambah foto</button>':""}</div>
+  ${b.galeri.length?`<div class="gal">${b.galeri.map(g=>`<figure><img src="${esc(localPhoto[g.file]||g.file)}" alt="${esc(g.ket||"Foto kegiatan")}" data-lb="${esc(g.id)}" loading="lazy"><figcaption>${esc(g.ket)}${adm?` <button class="del" data-gdel="${esc(g.id)}">Hapus</button>`:""}</figcaption></figure>`).join("")}</div>`:'<p class="mut">Belum ada foto kegiatan.'+(adm?" Klik Tambah foto di atas.":"")+"</p>"}`;
+  renderSearch();
 }
 async function loadBeranda(){
   try{const r=await fetch("data/beranda.json?v="+Date.now());if(!r.ok)throw 0;const d=await r.json();
@@ -462,17 +488,21 @@ $("pgHome").addEventListener("click",e=>{
 });
 $("btnInfo").onclick=()=>{$("fInfo").reset();$("iD").value=new Date().toISOString().slice(0,10);$("dInfo").showModal()};
 $("fInfo").addEventListener("submit",()=>{beranda.info.push({id:"i"+Date.now().toString(36),judul:$("iJ").value.trim(),isi:$("iT").value.trim(),tanggal:$("iD").value||new Date().toISOString().slice(0,10)});dirty=true;render()});
-$("btnProfil").onclick=()=>{$("pJ").value=beranda.profil.judul;$("pT").value=beranda.profil.teks;$("dProfil").showModal()};
-$("fProfil").addEventListener("submit",()=>{beranda.profil={judul:$("pJ").value.trim(),teks:$("pT").value.trim()};dirty=true;render()});
+$("btnProfil").onclick=()=>{const p=beranda.profil;$("pJ").value=p.judul;$("pT").value=p.teks;$("pA").value=p.alamat||"";$("pK").value=p.kontak||"";$("pN").value=p.kontakNama||"";$("dProfil").showModal()};
+$("fProfil").addEventListener("submit",()=>{beranda.profil={...beranda.profil,judul:$("pJ").value.trim(),teks:$("pT").value.trim(),alamat:$("pA").value.trim(),kontak:$("pK").value.trim(),kontakNama:$("pN").value.trim()};dirty=true;render()});
 $("btnGal").onclick=()=>{$("fGal").reset();$("dGal").showModal()};
 $("fGal").addEventListener("submit",async()=>{
-  const f=$("gF").files[0],ket=$("gK").value.trim();toast("Mengunggah foto…");
-  try{
-    const d=await shrink(await rd(f),1400),path=`galeri/${Date.now().toString(36)}.jpg`;
-    const p=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${path}`,{method:"PUT",headers:{Authorization:"Bearer "+cfg.token,Accept:"application/vnd.github+json"},body:JSON.stringify({message:"Unggah foto galeri",branch:cfg.branch,content:d.split(",")[1]})});
-    if(!p.ok)throw new Error("Gagal mengunggah foto ("+p.status+"). Periksa token dan izin Contents.");
-    localPhoto[path]=d;beranda.galeri.push({id:"g"+Date.now().toString(36),file:path,ket});dirty=true;render();toast("Foto terunggah. Tekan Simpan ke GitHub untuk mencatatnya.");
-  }catch(e){toast(e.message||"Foto tidak bisa dibaca")}
+  const fs=[...$("gF").files],ket=$("gK").value.trim();let n=0;
+  for(const f of fs){
+    toast(`Mengunggah foto ${n+1} dari ${fs.length}…`);
+    try{
+      const d=await shrink(await rd(f),1400),path=`galeri/${Date.now().toString(36)}${n}.jpg`;
+      const p=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${path}`,{method:"PUT",headers:{Authorization:"Bearer "+cfg.token,Accept:"application/vnd.github+json"},body:JSON.stringify({message:"Unggah foto galeri",branch:cfg.branch,content:d.split(",")[1]})});
+      if(!p.ok)throw new Error("Gagal mengunggah foto ("+p.status+"). Periksa token dan izin Contents.");
+      localPhoto[path]=d;beranda.galeri.push({id:"g"+Date.now().toString(36)+n,file:path,ket});n++;dirty=true;render();
+    }catch(e){toast(e.message||"Foto tidak bisa dibaca");break}
+  }
+  if(n)toast(`${n} foto terunggah. Tekan Simpan ke GitHub untuk mencatatnya.`);
 });
 fillJenjang($("fj"),true);fillJenjang($("fJenjang"),false);route();loadBeranda();load();
 </script>
