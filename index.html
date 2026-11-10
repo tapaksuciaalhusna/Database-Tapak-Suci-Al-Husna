@@ -220,11 +220,11 @@ footer{color:var(--mut);font-size:.85rem;text-align:center;padding:0 16px 30px}
 <script>
 const JENJANG=[
  ["Siswa","Siswa Dasar"],["Siswa","Siswa Satu"],["Siswa","Siswa Dua"],["Siswa","Siswa Tiga"],["Siswa","Siswa Empat"],
- ["Kader","Kader Dasar"],["Kader","Kader Muda"],["Kader","Kader Madya"],["Kader","Kader Kepala"],["Kader","Kader Utara"],
+ ["Kader","Kader Dasar"],["Kader","Kader Muda"],["Kader","Kader Madya"],["Kader","Kader Kepala"],["Kader","Kader Utama"],
  ["Pendekar","Pendekar Muda"],["Pendekar","Pendekar Madya"],["Pendekar","Pendekar Kepala"],["Pendekar","Pendekar Utama"],["Pendekar","Pendekar Besar"]
 ];
 // Keterangan tambahan per jenjang (singkatan / sabuk)
-const INFO={"Kader Dasar":"Biru Dasar (K.Da)","Kader Muda":"Biru Melati 1 (K.Ma)","Kader Madya":"Biru Melati 2 (K.Mdy)","Kader Kepala":"Biru Melati 3 (K.Ka)","Kader Utara":"Biru Melati 4 (K.Ua)",
+const INFO={"Kader Dasar":"Biru Dasar (K.Da)","Kader Muda":"Biru Melati 1 (K.Ma)","Kader Madya":"Biru Melati 2 (K.Mdy)","Kader Kepala":"Biru Melati 3 (K.Ka)","Kader Utama":"Biru Melati 4 (K.Ua)",
 "Pendekar Muda":"Hitam Melati 1 (P.Ma)","Pendekar Madya":"Hitam Melati 2 (P.Mdy)","Pendekar Kepala":"Hitam Melati 3 (P.Ka)","Pendekar Utama":"Hitam Melati 4 (P.Ua)","Pendekar Besar":"Hitam Melati 5 (P.Br)"};
 const tingkatOf=j=>(JENJANG.find(x=>x[1]===j)||["Siswa"])[0];
 const $=id=>document.getElementById(id);
