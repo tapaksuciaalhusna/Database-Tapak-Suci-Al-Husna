@@ -254,11 +254,11 @@ dialog .bar button,dialog li button{padding:4px 10px}
 <script>
 const JENJANG=[
  ["Siswa","Siswa Dasar"],["Siswa","Siswa Satu"],["Siswa","Siswa Dua"],["Siswa","Siswa Tiga"],["Siswa","Siswa Empat"],
- ["Kader","Kader Dasar"],["Kader","Kader Muda"],["Kader","Kader Madya"],["Kader","Kader Kepala"],["Kader","Kader Utara"],
+ ["Kader","Kader Dasar"],["Kader","Kader Muda"],["Kader","Kader Madya"],["Kader","Kader Kepala"],["Kader","Kader Utama"],
  ["Pendekar","Pendekar Muda"],["Pendekar","Pendekar Madya"],["Pendekar","Pendekar Kepala"],["Pendekar","Pendekar Utama"],["Pendekar","Pendekar Besar"]
 ];
 // Keterangan tambahan per jenjang (singkatan / sabuk)
-const INFO={"Kader Dasar":"Biru Dasar (K.Da)","Kader Muda":"Biru Melati 1 (K.Ma)","Kader Madya":"Biru Melati 2 (K.Mdy)","Kader Kepala":"Biru Melati 3 (K.Ka)","Kader Utara":"Biru Melati 4 (K.Ua)",
+const INFO={"Kader Dasar":"Biru Dasar (K.Da)","Kader Muda":"Biru Melati 1 (K.Ma)","Kader Madya":"Biru Melati 2 (K.Mdy)","Kader Kepala":"Biru Melati 3 (K.Ka)","Kader Utama":"Biru Melati 4 (K.Ua)",
 "Pendekar Muda":"Hitam Melati 1 (P.Ma)","Pendekar Madya":"Hitam Melati 2 (P.Mdy)","Pendekar Kepala":"Hitam Melati 3 (P.Ka)","Pendekar Utama":"Hitam Melati 4 (P.Ua)","Pendekar Besar":"Hitam Melati 5 (P.Br)"};
 const tingkatOf=j=>(JENJANG.find(x=>x[1]===j)||["Siswa"])[0];
 const $=id=>document.getElementById(id);
@@ -543,7 +543,7 @@ function renderBeranda(){
   const adm=isAdmin(),b=beranda,p=b.profil,info=[...b.info].sort((a,c)=>(c.tanggal||"")>(a.tanggal||"")?1:-1);
   const dg=(p.kontak||"").replace(/\D/g,""),wa=dg.startsWith("0")?"62"+dg.slice(1):dg,map="https://www.google.com/maps/search/?api=1&amp;query="+encodeURIComponent(p.alamat||"");
   const dd=t=>t?new Date(t+"T00:00:00Z").getUTCDate():"",mm=t=>t?new Date(t+"T00:00:00Z").toLocaleString("id-ID",{month:"short",timeZone:"UTC"}):"";
-  $("hTop").innerHTML=`<section class="hero2"><div class="hero-in"><div class="logo-wrap"><img src="logo.png" alt="Logo Tapak Suci"></div><div><span class="pill">Pencak Silat Putera Muhammadiyah</span><h2>${esc(p.judul)}</h2><p class="lead">Cabang Pesantren Al Husna, Sumatera Utara</p><p class="motto">Dengan iman dan akhlak aku kuat, tanpa iman dan akhlak aku lemah.</p><div class="cta">${dg?`<a class="btn gold" href="https://wa.me/${wa}" target="_blank" rel="noopener">Hubungi via WhatsApp</a>`:""}<a class="btn glass" href="${map}" target="_blank" rel="noopener">Lihat lokasi</a></div></div></div></section>`;
+  $("hTop").innerHTML=`<section class="hero2"><div class="hero-in"><div class="logo-wrap"><img src="logo.png" alt="Logo Tapak Suci"></div><div><span class="pill">PERPENA Persatuan Pencak Silat Pesantren Al Husna</span><h2>${esc(p.judul)}</h2><p class="lead">Cabang Pesantren Al Husna, Sumatera Utara</p><p class="motto">Dengan iman dan akhlak Saya Menjadi kuat, tanpa iman dan akhlak Saya menjadi lemah.</p><div class="cta">${dg?`<a class="btn gold" href="https://wa.me/${wa}" target="_blank" rel="noopener">Hubungi via WhatsApp</a>`:""}<a class="btn glass" href="${map}" target="_blank" rel="noopener">Lihat lokasi</a></div></div></div></section>`;
   $("hRest").innerHTML=`<div class="duo"><section class="card"><h3 class="sh">Tentang kami</h3><p style="white-space:pre-line;margin:0">${esc(p.teks)}</p></section>
   <section class="card kon"><h3 class="sh">Kontak dan alamat</h3><p><b>Alamat</b><br>${esc(p.alamat)}</p><p><b>Nomor kontak</b>${p.kontakNama?" ("+esc(p.kontakNama)+")":""}<br>${dg?`<a href="tel:${esc(p.kontak.replace(/[^\d+]/g,""))}">${esc(p.kontak)}</a>`:`<span class="mut">${adm?"Belum diisi. Isi lewat menu Ubah profil.":"Belum tersedia."}</span>`}</p></section></div>
   <div class="sechead"><h3 class="sh">Informasi terbaru</h3>${adm?'<button class="gold" data-open="btnInfo">Tambah informasi</button>':""}</div>
